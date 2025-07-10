@@ -199,22 +199,7 @@ class _BusquedaState extends State<Busqueda> {
               ),
               
               SizedBox(height: screenHeight*0.06), // Añadir un espacio entre el Container y el texto
-              /*Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Novedades',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Icon(Icons.account_balance,size:30,color:Colors.white),
-                ],
-              ),
-              SizedBox(height: screenHeight*0.04),*/
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: DropdownButtonFormField<String>(
@@ -254,82 +239,7 @@ class _BusquedaState extends State<Busqueda> {
                 ),
               ),
               SizedBox(height: screenHeight*0.02),
-              /*Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                      height: screenHeight * 0.07,
-                      width: screenWidth * 0.40,
-                      //margin: const EdgeInsets.only(left: 25),
-                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        //color: const Color.fromARGB(255, 23, 114, 26),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.arrow_drop_up_sharp, color: const Color.fromARGB(255, 35, 142, 39), size:50),
-                          //const SizedBox(width: 1),
-                          Text(
-                            value.sumaAcumulada2.toStringAsFixed(2),
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: screenHeight * 0.07,
-                      width: screenWidth * 0.40,
-                      //margin: const EdgeInsets.only(right: 25),
-                      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        //color: const Color.fromARGB(255, 179, 11, 11),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: Colors.white, width: 2),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.arrow_drop_down, color: Color.fromARGB(255, 194, 17, 4),size:50),
-                          //const SizedBox(width: 2),
-                          Text(
-                            value.restaAcumulada2.toStringAsFixed(2),
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: screenHeight*0.05),*/
-              /*Expanded(
-                child: DropdownButton<String>(
-                  isExpanded: true,
-                  value: value.filtroSeleccionado ?? 'Todos',
-                  items: value.colaboradoresUnicos.map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  icon: Icon(Icons.arrow_drop_down),
-                  elevation: 16,
-                  style: TextStyle(color: Colors.deepPurple),
-                  underline: Container(height: 2, color: Colors.deepPurpleAccent),
-                  onChanged: (nuevoValor) {
-                    value.aplicarFiltro(nuevoValor);
-                  },
-                ),
-              ),*/
+              
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
