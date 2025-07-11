@@ -1,11 +1,12 @@
 import 'package:bancamovil/models/Forms.dart';
 import 'package:bancamovil/models/novedadesbanco.dart';
+import 'package:bancamovil/models/devoluciones.dart';
 import 'package:bancamovil/models/sugerencias.dart';
 import 'package:bancamovil/models/suministros.dart';
 import 'package:bancamovil/models/quejas.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class FormsDB {
+/*class FormsDB {
   final database = Supabase.instance.client.from('Forms');
 
   Future<void> createForm(Forms form) async {
@@ -32,7 +33,7 @@ class FormsDB {
     }
   }
 
-}
+}*/
 
 class NovedadesBanco {
   final database = Supabase.instance.client.from('Novedades');
@@ -42,6 +43,19 @@ class NovedadesBanco {
   }
 
   final stream = Supabase.instance.client.from('Novedades').stream(
+    primaryKey: ['id']
+    ).map((data) => data.map((e) => Forms.fromMap(e)).toList());
+
+}
+
+class DevolucionesBanco {
+  final database = Supabase.instance.client.from('Devoluciones');
+
+  Future<void> createForm(BancoDevoluciones form) async {
+    await database.insert([form.toMap()]).select();
+  }
+
+  final stream = Supabase.instance.client.from('Devoluciones').stream(
     primaryKey: ['id']
     ).map((data) => data.map((e) => Forms.fromMap(e)).toList());
 

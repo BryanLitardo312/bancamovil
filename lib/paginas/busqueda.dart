@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //import 'package:bancamovil/componentes/drawer.dart';
 import 'package:bancamovil/models/database.dart';
 import 'package:bancamovil/models/novedadesbanco.dart';
+import 'package:bancamovil/models/devoluciones.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:badges/badges.dart' as badges;
@@ -16,6 +17,7 @@ class Busqueda extends StatefulWidget {
 
 class _BusquedaState extends State<Busqueda> {
   final novedadesBanco = NovedadesBanco();
+  final devolucionesBanco = DevolucionesBanco();
   int _notificationCount = 0;
   String? _filtroSeleccionado = 'Seleccione';
   List<String> _opcionesFiltro = ['Seleccione'];
@@ -127,51 +129,125 @@ class _BusquedaState extends State<Busqueda> {
                 fontSize: 18,
                 color:Colors.white,
                 )
-              ),
             ),
-            TextButton(
-              onPressed: () async {
-                final newNote = BancoNovedades(
-                  //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
-                  No: item['No'],
-                  FECHA: item['FECHA'],
-                  REF: item['REF'],
-                  LUGAR: item['LUGAR'],
-                  DETALLE: item['DETALLE'],
-                  SECUENCIAL: item['SECUENCIAL'],
-                  SIGNO: item['SIGNO'],
-                  VALOR: double.parse(item['VALOR'].toString()),
-                  DESCRIPCION: item['DESCRIPCION'],
-                  EESS: valor.nombreEstacion?? 'No disponible',
-                  BODEGA: valor.bodegaEstacion?? 'No disponible',
+          ),
+          TextButton(
+            onPressed: () async {
+              final newNote = BancoNovedades(
+                //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
+                No: item['No'],
+                FECHA: item['FECHA'],
+                REF: item['REF'],
+                LUGAR: item['LUGAR'],
+                DETALLE: item['DETALLE'],
+                SECUENCIAL: item['SECUENCIAL'],
+                SIGNO: item['SIGNO'],
+                VALOR: double.parse(item['VALOR'].toString()),
+                DESCRIPCION: item['DESCRIPCION'],
+                EESS: valor.nombreEstacion?? 'No disponible',
+                BODEGA: valor.bodegaEstacion?? 'No disponible',
+              );
+              try {
+                //print('Datos a enviar: ${item['NOMBRE']}');
+                await novedadesBanco.createForm(newNote);
+                Navigator.pop(context);
+                setState(() {
+                  _notificationCount++; // Incrementar contador
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Solicitud enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
                 );
-                try {
-                  //print('Datos a enviar: ${item['NOMBRE']}');
-                  await novedadesBanco.createForm(newNote);
-                  Navigator.pop(context);
-                  setState(() {
-                    _notificationCount++; // Incrementar contador
-                  });
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Solicitud enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
-                  );
-                  //noteController.clear();
-                } catch (e) {
-                  // Maneja el error si es necesario
-                  //print('Error al crear el formulario: $e');
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Error al enviar la solicitud: $e')),
-                  );
-                }
-              },
-              child: const Text(
-                'De acuerdo',
-                style:TextStyle(
-                  fontSize: 18,
-                  color:Colors.white,
-                  )
-                ),
+                //noteController.clear();
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error al enviar la solicitud: $e')),
+                );
+              }
+            },
+            child: const Text(
+              'De acuerdo',
+              style:TextStyle(
+                fontSize: 18,
+                color:Colors.white,
+                )
+              ),
+          ),
+        ],
+      ),   
+    );
+  }
+
+  void _enviar_devoluciones(Map<String, dynamic> item) {
+    final valor = Provider.of<Datamodel>(context, listen: false);
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.blueGrey[900],
+        title: const Text(
+          'Confirmación',
+          style: TextStyle(color: Colors.white)
+          ),
+        content: const Text(
+          'Se solicitará la devolución del ejemplar en mal estado.',
+          style:TextStyle(
+            fontSize: 17,
+            color: Colors.white,)
+          ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              //noteController.clear();
+            },
+            child: const Text(
+              'Cancelar',
+              style:TextStyle(
+                fontSize: 18,
+                color:Colors.white,
+                )
             ),
+          ),
+          TextButton(
+            onPressed: () async {
+              final newNote = BancoDevoluciones(
+                //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
+                No: item['No'],
+                FECHA: item['FECHA'],
+                REF: item['REF'],
+                LUGAR: item['LUGAR'],
+                DETALLE: item['DETALLE'],
+                SECUENCIAL: item['SECUENCIAL'],
+                SIGNO: item['SIGNO'],
+                VALOR: double.parse(item['VALOR'].toString()),
+                DESCRIPCION: item['DESCRIPCION'],
+                EESS: valor.nombreEstacion?? 'No disponible',
+                BODEGA: valor.bodegaEstacion?? 'No disponible',
+              );
+              try {
+                //print('Datos a enviar: ${item['NOMBRE']}');
+                await devolucionesBanco.createForm(newNote);
+                Navigator.pop(context);
+                setState(() {
+                  _notificationCount++; // Incrementar contador
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Solicitud enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
+                );
+                //noteController.clear();
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Error al enviar la solicitud: $e')),
+                );
+              }
+            },
+            child: const Text(
+              'De acuerdo',
+              style:TextStyle(
+                fontSize: 18,
+                color:Colors.white,
+                )
+              ),
+          ),
         ],
       ),   
     );
@@ -283,15 +359,15 @@ class _BusquedaState extends State<Busqueda> {
                                     children: [
                                       SlidableAction(
                                         onPressed: (context) {
-                                          ScaffoldMessenger.of(context).showSnackBar(
+                                          value.tipo=='usuario' ? _enviar_devoluciones(novedades[index]) : ScaffoldMessenger.of(context).showSnackBar(
                                             SnackBar(content: Text("Servicio no disponible",style:TextStyle(fontSize: 18))),
                                           );
                                         },
                                         backgroundColor: Colors.blue,
                                         foregroundColor: Colors.white,
-                                        icon: Icons.video_call,
+                                        icon: Icons.attach_money_rounded,
                                         flex:2,
-                                        label: 'Video',
+                                        label: 'Retorno',
                                         
                                       ),
                                       SlidableAction(
@@ -302,9 +378,9 @@ class _BusquedaState extends State<Busqueda> {
                                         },
                                         backgroundColor: Colors.red,
                                         foregroundColor: Colors.white,
-                                        icon: Icons.notification_add,
+                                        icon: Icons.folder_copy_rounded,
                                         flex:2,
-                                        label: 'Reportar',
+                                        label: 'Soportes',
                                         // Removed invalid 'style' parameter
                                       ),
                                     ],
@@ -421,7 +497,8 @@ class _BusquedaState extends State<Busqueda> {
         ],
       ),
     );
-    },
+    }
     );
   }
+
 }
