@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
 import 'package:bancamovil/models/quejas.dart';
+import 'package:bancamovil/componentes/tab_bar.dart';
 import 'package:intl/intl.dart';
 
 
@@ -16,9 +17,22 @@ class Historial extends StatefulWidget {
 
 }
 
-class _HistorialState extends State<Historial> {
+class _HistorialState extends State<Historial> with SingleTickerProviderStateMixin {
   final quejasBanco = QuejasBanco();
-  
+  late TabController _tabController;
+
+  @override
+  void initState(){
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   void _submitForm(Map<String, dynamic> item) {
     final double screenWidth = MediaQuery.of(context).size.width;
     //final double screenHeight = MediaQuery.of(context).size.height;
@@ -161,6 +175,7 @@ class _HistorialState extends State<Historial> {
                     ],
                   ),
               ),
+              MyTabBar(tabController: _tabController),
               SizedBox(height: screenHeight*0.03),
               Expanded(
                 child: value.solicitudes_suministros.isEmpty

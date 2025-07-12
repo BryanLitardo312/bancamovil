@@ -9,19 +9,20 @@ class MyTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TabBar(
-        controller: tabController,
-        tabs: [
-          Tab(
-            icon:Icon(Icons.home),
-          ),
-          Tab(
-            icon:Icon(Icons.settings),
-          ),
-        ],
-        indicatorColor: Colors.grey[900],
-      )
+    return TabBar(
+      controller: tabController,
+      tabs: [
+        Tab(
+          icon:Icon(Icons.local_shipping_rounded),
+        ),
+        Tab(
+          icon:Icon(Icons.balance),
+        ),
+        Tab(
+          icon:Icon(Icons.monetization_on_outlined),
+        ),
+      ],
+      indicatorColor: Colors.grey[900],
     );
   }
 }
