@@ -352,18 +352,9 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             itemCount: value.solicitudes_suministros.length,
             itemBuilder: (context, index) {
               final item = value.solicitudes_suministros[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0),
-                child: Card(
+              return Card(
                   color: Colors.white,
-                  elevation: 7,
-                  /*shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.black,
-                      width: 1.5,
-                    ),
-                    borderRadius: BorderRadius.circular(15),
-                  ),*/
+                  //elevation: 7,
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -435,7 +426,6 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                       ],
                     ),
                   ),
-                ),
               );
             },
         );

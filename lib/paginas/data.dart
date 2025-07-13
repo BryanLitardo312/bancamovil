@@ -169,7 +169,7 @@ class _DataState extends State<Data> {
                             enabled: true,
                             touchTooltipData: LineTouchTooltipData(
                               //tooltipBgColor: Colors.blueAccent, // Cambia el color de fondo del tooltip
-                              tooltipRoundedRadius: 8, // Cambia el radio de las esquinas del tooltip
+                              //tooltipBorderRadius: 8, // Cambia el radio de las esquinas del tooltip
                               tooltipPadding: const EdgeInsets.all(8), // Ajusta el padding del tooltip
                               tooltipMargin: 8, // Ajusta el margen del tooltip
                               getTooltipItems: (touchedSpots) {
