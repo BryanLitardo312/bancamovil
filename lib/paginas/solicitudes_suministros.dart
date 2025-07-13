@@ -1,3 +1,4 @@
+import 'package:bancamovil/paginas/detalle_sol.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
@@ -334,14 +335,14 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                 Icon(
                   Icons.info_outline,
                   size: 50,
-                  color: Colors.grey[900],
+                  color: Colors.white,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   'No hay datos registrados.',
                   style: TextStyle(
                     fontSize: 16,
-                    color: Colors.grey[900],
+                    color: Colors.white,
                   ),
                 ),
               ],
@@ -352,11 +353,19 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             itemCount: value.solicitudes_suministros.length,
             itemBuilder: (context, index) {
               final item = value.solicitudes_suministros[index];
-              return Card(
-                  color: Colors.white,
-                  //elevation: 7,
+              return InkWell(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetalleSolicitudScreen(solicitud: item),
+                  ),
+                );
+              },
+              child: Container(
+                  color: Colors.grey[900],
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(vertical:20,horizontal: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -368,22 +377,22 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 5),
                         if (value.tipo != 'usuario')
                           Text(
-                            'Origen: ${item['estacion']}',
-                            style: const TextStyle(fontSize: 16, color: Colors.black),
+                            'De: ${item['estacion']}',
+                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                           ),
-                        const SizedBox(height: 5),
+                        //const SizedBox(height: 5),
                         Text(
-                          'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                          style: const TextStyle(fontSize: 16, color: Colors.black),
+                          '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                          style: const TextStyle(fontSize: 15, color: Colors.white),
                         ),
                         /*const SizedBox(height: 5),
                         Row(
@@ -426,6 +435,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                       ],
                     ),
                   ),
+              ),
               );
             },
         );
@@ -438,7 +448,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
 
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[900],
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
