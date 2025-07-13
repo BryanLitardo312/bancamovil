@@ -14,7 +14,7 @@ class card_wallet extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       margin: const EdgeInsets.only(left: 20,right: 20,top: 20),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       height: screenHeight * 0.25,
       //width: 350,
       decoration: BoxDecoration(
@@ -43,17 +43,14 @@ class card_wallet extends StatelessWidget {
                 children: [
                   Text('**** **** **** 4556 ',style: TextStyle(color: Colors.white,fontSize: 21),),
                   SizedBox(height: 10),
-              Text('\$${double.parse(wallet.monto.toStringAsFixed(2))}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 30),),
+              Text('\$${double.parse(wallet.monto.toStringAsFixed(2))}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 25),),
                 ],
               ),
             ],
           ),
           const Column(
             children: [
-              //Icon(Icons.credit_card,color: Colors.white,size: 50,),
-              //const SizedBox(height: 10),
               Icon(Icons.memory, color: Colors.white,size: 50,),
-              //Text(wallet.zona,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[900],fontSize: 22),),
             ],
           ),
         ],
