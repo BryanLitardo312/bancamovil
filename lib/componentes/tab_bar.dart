@@ -25,6 +25,7 @@ class MyTabBar extends StatelessWidget {
           icon:Icon(Icons.monetization_on_outlined),
         ),
       ],
+      isScrollable: true,
       labelStyle: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,

@@ -139,7 +139,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
     );
   }
 
-  @override
+  /*@override
   Widget build(BuildContext context) {
     
     final double screenHeight = MediaQuery.of(context).size.height;
@@ -176,13 +176,13 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                   ),
               ),
               MyTabBar(tabController: _tabController),
-              TabBarView(
+              /*TabBarView(
                 controller: _tabController,
                 children:[
                   Text('Ok 1'),
                   Text('Ok 2'),
                 ],
-              ),
+              ),*/
               Expanded(
                 child: value.solicitudes_suministros.isEmpty
                 ? Center(
@@ -324,5 +324,182 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
       ),
       ),
     );
+  }*/
+  Widget _buildSolicitudesList(Datamodel value) {
+    return value.solicitudes_suministros.isEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 50,
+                  color: Colors.grey[900],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'No hay datos registrados.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey[900],
+                  ),
+                ),
+              ],
+            ),
+          )
+        : ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            itemCount: value.solicitudes_suministros.length,
+            itemBuilder: (context, index) {
+              final item = value.solicitudes_suministros[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Card(
+                  color: Colors.white,
+                  elevation: 7,
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.black,
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Solicitud #${item['requests']}',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        if (value.tipo != 'usuario')
+                          Text(
+                            'Origen: ${item['estacion']}',
+                            style: const TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        const SizedBox(height: 5),
+                        Text(
+                          'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                          style: const TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                        const SizedBox(height: 5),
+                        Row(
+                          children: [
+                            Text(
+                              'Emisión: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                              style: const TextStyle(fontSize: 16, color: Colors.black),
+                            ),
+                            SizedBox(width: 5),
+                            Icon(Icons.calendar_month_outlined, color: Colors.black),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            ElevatedButton.icon(
+                              onPressed: () => value.tipo == 'usuario'
+                                  ? _submitForm(item)
+                                  : ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'Servicio no disponible',
+                                          style: TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                    ),
+                              icon: const Icon(Icons.notifications_active),
+                              label: const Text('Notificar'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                foregroundColor: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),                          
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+        );
+    }
+
+   @override
+  Widget build(BuildContext context) {
+    final double screenHeight = MediaQuery.of(context).size.height;
+    return Consumer<Datamodel>(
+      builder: (context, value, child) => Scaffold(
+        backgroundColor: Colors.grey[100],
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_circle_left_outlined, color: Colors.black, size: 50),
+            onPressed: () => Navigator.pop(context),
+          ),
+        ),
+        body: Column(
+          children: [
+            Image.asset(
+              'lib/imagenes/Alborada.jpeg',
+              width: double.infinity,
+              height: screenHeight * 0.35,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: screenHeight * 0.04),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Historial',
+                    style: TextStyle(
+                      color: Colors.grey[900],
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Icon(Icons.shopping_cart_checkout, size: 30, color: Colors.grey[900]),
+                ],
+              ),
+            ),
+            MyTabBar(tabController: _tabController),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildSolicitudesList(value),
+                  Text('Hola'),
+                  Text('Hola 2'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
+
+
+
+
 }
