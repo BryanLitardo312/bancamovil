@@ -176,7 +176,13 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                   ),
               ),
               MyTabBar(tabController: _tabController),
-              SizedBox(height: screenHeight*0.03),
+              TabBarView(
+                controller: _tabController,
+                children:[
+                  Text('Ok 1'),
+                  Text('Ok 2'),
+                ],
+              ),
               Expanded(
                 child: value.solicitudes_suministros.isEmpty
                 ? Center(
