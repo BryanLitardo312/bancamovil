@@ -114,7 +114,7 @@ class _PortadaState extends State<Portada> {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          //const SizedBox(height: 5),
           card_wallet(
             wallet: Wallet(
               
@@ -212,7 +212,7 @@ class _PortadaState extends State<Portada> {
               ],
             ),
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 20),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child:

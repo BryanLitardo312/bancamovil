@@ -348,22 +348,22 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             ),
           )
         : ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
+            //padding: const EdgeInsets.symmetric(horizontal: 30),
             itemCount: value.solicitudes_suministros.length,
             itemBuilder: (context, index) {
               final item = value.solicitudes_suministros[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 0),
                 child: Card(
                   color: Colors.white,
                   elevation: 7,
-                  shape: RoundedRectangleBorder(
+                  /*shape: RoundedRectangleBorder(
                     side: BorderSide(
                       color: Colors.black,
                       width: 1.5,
                     ),
                     borderRadius: BorderRadius.circular(15),
-                  ),
+                  ),*/
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
@@ -394,7 +394,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                           'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                           style: const TextStyle(fontSize: 16, color: Colors.black),
                         ),
-                        const SizedBox(height: 5),
+                        /*const SizedBox(height: 5),
                         Row(
                           children: [
                             Text(
@@ -431,7 +431,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                               ),
                             ),                          
                           ],
-                        ),
+                        ),*/
                       ],
                     ),
                   ),
@@ -441,55 +441,68 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
         );
     }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
+     final double imageHeight = screenHeight * 0.35;
+
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(
-        backgroundColor: Colors.grey[100],
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_circle_left_outlined, color: Colors.black, size: 50),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
-        body: Column(
+        backgroundColor: Colors.grey[200],
+        extendBodyBehindAppBar: true,
+        body: Stack(
           children: [
-            Image.asset(
-              'lib/imagenes/Alborada.jpeg',
-              width: double.infinity,
-              height: screenHeight * 0.35,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(height: screenHeight * 0.04),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Historial',
-                    style: TextStyle(
-                      color: Colors.grey[900],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Icon(Icons.shopping_cart_checkout, size: 30, color: Colors.grey[900]),
-                ],
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: imageHeight,
+              child: Image.asset(
+                'lib/imagenes/Alborada.jpeg',
+                fit: BoxFit.cover,
               ),
             ),
-            MyTabBar(tabController: _tabController),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Builder(
+                  builder: (context) => IconButton(
+                    icon: Padding(
+                      padding: const EdgeInsets.only(left:12),
+                      child: const Icon(
+                          Icons.arrow_circle_left_outlined, // Cambia por el icono que necesites
+                          color: Colors.black,
+                          size: 50,
+                      ),
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: imageHeight,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Column(
                 children: [
-                  _buildSolicitudesList(value),
-                  Text('Hola'),
-                  Text('Hola 2'),
+                  SizedBox(height: screenHeight * 0.02),
+                  MyTabBar(tabController: _tabController),
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        _buildSolicitudesList(value),
+                        const Text('Hola'),
+                        const Text('Hola 2'),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

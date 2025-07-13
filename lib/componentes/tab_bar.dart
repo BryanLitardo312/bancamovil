@@ -13,19 +13,20 @@ class MyTabBar extends StatelessWidget {
       controller: tabController,
       tabs: [
         Tab(
-          text: 'Suministros',
+          text: 'Provisión',
           icon:Icon(Icons.local_shipping_rounded),
         ),
         Tab(
           text: 'Novedades',
-          icon:Icon(Icons.balance),
+          icon:Icon(Icons.account_balance),
         ),
         Tab(
           text: 'Retornos',
           icon:Icon(Icons.monetization_on_outlined),
         ),
       ],
-      isScrollable: true,
+      isScrollable: false,
+      indicatorColor: Colors.red,
       labelStyle: const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.bold,
