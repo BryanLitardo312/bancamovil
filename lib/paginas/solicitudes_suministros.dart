@@ -375,77 +375,82 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical:25,horizontal: 30),
                     child: Row(
-                      //mainAxisSize: MainAxisSize.min,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Orden #${item['requests']}',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                            ), 
-                            const SizedBox(height: 5),
-                            value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                            //value.tipo!='usuario' ? Text('${item['EESS']}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color:Colors.white),overflow:TextOverflow.clip) : SizedBox.shrink(),
-                            //const SizedBox(height: 5),
-                            Text(
-                              '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                              style: const TextStyle(fontSize: 15, color: Colors.white),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            /*const SizedBox(height: 5),
-                            Row(
-                              children: [
-                                Text(
-                                  'Emisión: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
-                                  style: const TextStyle(fontSize: 16, color: Colors.black),
+                        Expanded(
+                          flex:4,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Orden #${item['requests']}',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                                SizedBox(width: 5),
-                                Icon(Icons.calendar_month_outlined, color: Colors.black),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                ElevatedButton.icon(
-                                  onPressed: () => value.tipo == 'usuario'
-                                      ? _submitForm(item)
-                                      : ScaffoldMessenger.of(context).showSnackBar(
-                                          const SnackBar(
-                                            content: Text(
-                                              'Servicio no disponible',
-                                              style: TextStyle(fontSize: 18),
+                              ), 
+                              const SizedBox(height: 5),
+                              value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                              //value.tipo!='usuario' ? Text('${item['EESS']}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color:Colors.white),overflow:TextOverflow.clip) : SizedBox.shrink(),
+                              //const SizedBox(height: 5),
+                              Text(
+                                '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                style: const TextStyle(fontSize: 15, color: Colors.white),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              /*const SizedBox(height: 5),
+                              Row(
+                                children: [
+                                  Text(
+                                    'Emisión: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                    style: const TextStyle(fontSize: 16, color: Colors.black),
+                                  ),
+                                  SizedBox(width: 5),
+                                  Icon(Icons.calendar_month_outlined, color: Colors.black),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  ElevatedButton.icon(
+                                    onPressed: () => value.tipo == 'usuario'
+                                        ? _submitForm(item)
+                                        : ScaffoldMessenger.of(context).showSnackBar(
+                                            const SnackBar(
+                                              content: Text(
+                                                'Servicio no disponible',
+                                                style: TextStyle(fontSize: 18),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                  icon: const Icon(Icons.notifications_active),
-                                  label: const Text('Notificar'),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.red,
-                                    foregroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10),
+                                    icon: const Icon(Icons.notifications_active),
+                                    label: const Text('Notificar'),
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.red,
+                                      foregroundColor: Colors.white,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
-                                  ),
-                                ),                          
-                              ],
-                            ),*/
-                          ],
+                                  ),                          
+                                ],
+                              ),*/
+                            ],
+                          ),
                         ),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.arrow_circle_right_rounded,
-                              size: 50,
-                              color: Colors.white,
-                            ),
-                          ],
+                        Expanded(
+                          flex:1,
+                          child: Column(
+                            //mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.arrow_circle_right_rounded,
+                                size: 50,
+                                color: Colors.white,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
