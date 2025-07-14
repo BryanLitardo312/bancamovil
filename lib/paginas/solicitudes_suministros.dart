@@ -396,7 +396,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                               Text(
                                 '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                 style: const TextStyle(fontSize: 15, color: Colors.white),
-                                overflow: TextOverflow.ellipsis,
+                                overflow: TextOverflow.clip,
                               ),
                               /*const SizedBox(height: 5),
                               Row(
@@ -442,6 +442,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                         Expanded(
                           flex:1,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             //mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(
