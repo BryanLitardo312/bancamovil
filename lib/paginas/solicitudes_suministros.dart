@@ -65,7 +65,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                     fontSize: 16,
                     color: Colors.white,)
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   TextField(
                     maxLength: 100,
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -140,194 +140,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
     );
   }
 
-  /*@override
-  Widget build(BuildContext context) {
-    
-    final double screenHeight = MediaQuery.of(context).size.height;
-    return Consumer<Datamodel>(
-      builder:(context,value,child)=> Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Image.asset(
-                'lib/imagenes/Alborada.jpeg', // Reemplaza con la ruta de tu imagen
-                width: double.infinity,
-                height: screenHeight*0.35, // Ajusta la altura según sea necesario
-                fit: BoxFit.cover,
-              ),
-              SizedBox(height: screenHeight*0.04),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Historial',
-                        style: TextStyle(
-                          color: Colors.grey[900],
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      Icon(Icons.shopping_cart_checkout,size:30,color:Colors.grey[900]),
-                    ],
-                  ),
-              ),
-              MyTabBar(tabController: _tabController),
-              /*TabBarView(
-                controller: _tabController,
-                children:[
-                  Text('Ok 1'),
-                  Text('Ok 2'),
-                ],
-              ),*/
-              Expanded(
-                child: value.solicitudes_suministros.isEmpty
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.info_outline,
-                          size: 50,
-                          color: Colors.grey[900],
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'No hay datos registrados.',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey[900],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  shrinkWrap: true,
-                  itemCount: value.solicitudes_suministros.length, // Número de elementos en la lista
-                  itemBuilder: (context, index) {
-                    final item = value.solicitudes_suministros[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Card(
-                        color:Colors.white,
-                        elevation: 7, // Sombra para la tarjeta
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Colors.black,
-                            width: 1.5,
-                          ),
-                          borderRadius: BorderRadius.circular(15), // Bordes redondeados
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0), // Espaciado interno
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Solicitud #${item['requests']}',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              
-                              if (value.tipo != 'usuario')
-                                Text(
-                                  'Origen: ${item['estacion']}',
-                                  style: const TextStyle(fontSize: 16,color:Colors.black),
-                                ),
-                              const SizedBox(height: 5),
-                              Text(
-                                'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                style: const TextStyle(fontSize: 16,color:Colors.black),
-                              ),
-                              const SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Emisión: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
-                                    style: const TextStyle(fontSize: 16,color:Colors.black),
-                                  ),
-                                  SizedBox(width: 5,),
-                                  Icon(Icons.calendar_month_outlined,color:Colors.black),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  ElevatedButton.icon(
-                                    onPressed: () => value.tipo == 'usuario'
-                                        ? _submitForm(item)
-                                        : ScaffoldMessenger.of(context).showSnackBar(
-                                            const SnackBar(
-                                              content: Text(
-                                                'Servicio no disponible',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                            ),
-                                          ),
-                                    icon: const Icon(Icons.notifications_active),
-                                    label: const Text('Notificar'),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red,
-                                      foregroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              ),      
-            ],
-          ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              leading: Builder(
-                builder: (context) => IconButton(
-                  icon: const Padding(
-                    padding: EdgeInsets.only(left: 12),
-                    child: Icon(Icons.arrow_circle_left_outlined,color:Colors.black,size: 50,),
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      ),
-    );
-  }*/
+  
   Widget _buildSolicitudesList(Datamodel value) {
-    final double screenWidth = MediaQuery.of(context).size.width;
     return value.solicitudes_suministros.isEmpty
         ? Center(
             child: Column(
@@ -364,8 +178,6 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                 );
               },
               child: Container(
-                  //color: Colors.grey[900],
-                  //width: double.infinity,
                   decoration: BoxDecoration(
                     color: Colors.grey[900],
                     border: Border(
@@ -391,51 +203,11 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                               ), 
                               const SizedBox(height: 5),
                               value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                              //value.tipo!='usuario' ? Text('${item['EESS']}',style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color:Colors.white),overflow:TextOverflow.clip) : SizedBox.shrink(),
-                              //const SizedBox(height: 5),
                               Text(
                                 '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                 style: const TextStyle(fontSize: 15, color: Colors.white),
                                 overflow: TextOverflow.clip,
                               ),
-                              /*const SizedBox(height: 5),
-                              Row(
-                                children: [
-                                  Text(
-                                    'Emisión: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
-                                    style: const TextStyle(fontSize: 16, color: Colors.black),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Icon(Icons.calendar_month_outlined, color: Colors.black),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  ElevatedButton.icon(
-                                    onPressed: () => value.tipo == 'usuario'
-                                        ? _submitForm(item)
-                                        : ScaffoldMessenger.of(context).showSnackBar(
-                                            const SnackBar(
-                                              content: Text(
-                                                'Servicio no disponible',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                            ),
-                                          ),
-                                    icon: const Icon(Icons.notifications_active),
-                                    label: const Text('Notificar'),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red,
-                                      foregroundColor: Colors.white,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                    ),
-                                  ),                          
-                                ],
-                              ),*/
                             ],
                           ),
                         ),
@@ -446,7 +218,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                             //mainAxisSize: MainAxisSize.min,
                             children: [
                               Icon(
-                                Icons.arrow_circle_right_rounded,
+                                Icons.arrow_circle_right_outlined,
                                 size: 50,
                                 color: Colors.white,
                               ),

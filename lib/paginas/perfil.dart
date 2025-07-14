@@ -65,7 +65,7 @@ class _PerfilPageState extends State<PerfilPage> {
 
   @override
   Widget build(BuildContext context) {
-    //final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     return Consumer<Datamodel>(
       builder:(context,value,child)=> Scaffold(
@@ -95,8 +95,8 @@ class _PerfilPageState extends State<PerfilPage> {
               SizedBox(height: screenHeight*0.08,),
               Center(
                 child: SizedBox(
-                  height: 180,
-                  width: 180,
+                  height: 150,
+                  width: 150,
                   child: CircleAvatar(
                     backgroundImage: AssetImage(value.genero == 'M' ? 'lib/imagenes/hombre2.png' : 'lib/imagenes/mujer.png',),
                     ),
@@ -214,7 +214,7 @@ class _PerfilPageState extends State<PerfilPage> {
             ],
           ),
         )
-    ),
+      ),
     );
   }
 }
