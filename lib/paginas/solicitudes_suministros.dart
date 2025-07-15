@@ -177,57 +177,57 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                   ),
                 );
               },
-              child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.grey[900],
-                    border: Border(
-                      bottom: BorderSide(color: Colors.white, width: 1.0),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 8),
+                child: Card(
+                  elevation: 5,
+                    color:Colors.grey[900],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical:25,horizontal: 30),
                     child: Row(
-                      children: [
-                        Expanded(
-                          flex:4,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Orden #${item['requests']}',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
+                        children: [
+                          Expanded(
+                            flex:4,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Sol. #${item['requests']}',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ), 
+                                const SizedBox(height: 5),
+                                value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                Text(
+                                  '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                  style: const TextStyle(fontSize: 15, color: Colors.white),
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            flex:1,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              //mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.arrow_circle_right_outlined,
+                                  size: 50,
                                   color: Colors.white,
                                 ),
-                              ), 
-                              const SizedBox(height: 5),
-                              value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                              Text(
-                                '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                style: const TextStyle(fontSize: 15, color: Colors.white),
-                                overflow: TextOverflow.clip,
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex:1,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            //mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.arrow_circle_right_outlined,
-                                size: 50,
-                                color: Colors.white,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                        ],
+                      ),
+                    
+                ),
               ),
               );
             },
@@ -241,7 +241,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
 
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.black,
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
