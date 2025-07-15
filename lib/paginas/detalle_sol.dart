@@ -169,19 +169,12 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 20),
+            //Text('${widget.solicitud}',style:TextStyle(color: Colors.amber)),
             Center(
               child: Text('Solicitud #${widget.solicitud['requests']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
-              /*child: SizedBox(
-                height: 100,
-                width: 100,
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Text('#${widget.solicitud['requests']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.grey[900]),overflow: TextOverflow.clip,),
-                  ),
-              ),*/
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 50),
             Container(
               width:screenWidth*0.80,
               decoration: BoxDecoration(
@@ -197,7 +190,7 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Container(
               width:screenWidth*0.80,
               decoration: BoxDecoration(
@@ -214,7 +207,7 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Container(
               width:screenWidth*0.80,
               decoration: BoxDecoration(
@@ -232,6 +225,7 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
               ),
             ),
             const SizedBox(height: 30),
+            widget.solicitud['URL_PUBLICA'] == null ? 
             SizedBox(
               width:screenWidth*0.80,
               height:50,
@@ -249,93 +243,68 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 icon: const Icon(Icons.notifications_active,size:20),
                 label: const Text('Notificar',style:TextStyle(fontSize: 17,color:Colors.white)),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: const Color.fromARGB(255, 233, 39, 26),
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 50),
-            SizedBox(
-              width:screenWidth*0.80,
-              //padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextField(
-                //controller: _nombreController,
-                decoration: InputDecoration(
-                  labelText: 'Comentarios',
-                  labelStyle: const TextStyle(color: Colors.white),
-                  filled: true,
-                  fillColor: Colors.grey[800],
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Colors.white),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(color: Color.fromARGB(255, 40, 125, 43)),
-                  ),
-                ),
-                style: const TextStyle(color: Colors.white),
-              ),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              width:screenWidth*0.80,
-              height:50,
-              child: ElevatedButton.icon(
-                onPressed: () => value.tipo == 'usuario'
-                  ? _submitForm(widget.solicitud)
-                  : ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Servicio no disponible',
-                          style: TextStyle(fontSize: 18),
-                        ),
+            ) : Column(
+              children: [
+                SizedBox(
+                  width:screenWidth*0.80,
+                  //padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: TextField(
+                    //controller: _nombreController,
+                    decoration: InputDecoration(
+                      labelText: 'Comentarios',
+                      labelStyle: const TextStyle(color: Colors.white),
+                      filled: true,
+                      fillColor: Colors.grey[800],
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.white),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Color.fromARGB(255, 40, 125, 43)),
                       ),
                     ),
-                icon: const Icon(Icons.email_rounded,size:20),
-                label: const Text('Enviar',style:TextStyle(fontSize: 17,color:Colors.white)),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
-              ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width:screenWidth*0.80,
+                  height:50,
+                  child: ElevatedButton.icon(
+                    onPressed: () => value.tipo == 'usuario'
+                      ? _submitForm(widget.solicitud)
+                      : ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Servicio no disponible',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                        ),
+                    icon: const Icon(Icons.email_rounded,size:20),
+                    label: const Text('Enviar',style:TextStyle(fontSize: 17,color:Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 42, 147, 45),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
       ),
-      /*appBar: AppBar(
-        title: Text("Detalle de la Solicitud #${solicitud['requests']}"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Solicitud #${solicitud['requests']}",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            if (solicitud['estacion'] != null)
-              Text(
-                "Origen: ${solicitud['estacion']}",
-                style: TextStyle(fontSize: 16),
-              ),
-            SizedBox(height: 10),
-            Text(
-              "Materiales: ${solicitud['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}",
-              style: TextStyle(fontSize: 16),
-            ),
-            // Aquí puedes agregar más detalles según tu estructura de datos
-          ],
-        ),
-      ),*/
     ),
     );
   }

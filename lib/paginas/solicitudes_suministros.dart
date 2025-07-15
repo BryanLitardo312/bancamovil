@@ -34,7 +34,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
     super.dispose();
   }
 
-  void _submitForm(Map<String, dynamic> item) {
+  /*void _submitForm(Map<String, dynamic> item) {
     final double screenWidth = MediaQuery.of(context).size.width;
     //final double screenHeight = MediaQuery.of(context).size.height;
     final valor = Provider.of<Datamodel>(context, listen: false);
@@ -138,7 +138,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
         ],
       ),   
     );
-  }
+  }*/
 
   
   Widget _buildSolicitudesList(Datamodel value) {
@@ -168,71 +168,180 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             itemCount: value.solicitudes_suministros.length,
             itemBuilder: (context, index) {
               final item = value.solicitudes_suministros[index];
-              return InkWell(
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetalleSolicitudScreen(solicitud: item),
-                  ),
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 8),
-                child: Card(
-                  elevation: 5,
-                    color:Colors.grey[900],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Row(
-                        children: [
-                          Expanded(
-                            flex:4,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Sol. #${item['requests']}',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ), 
-                                const SizedBox(height: 5),
-                                value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                                Text(
-                                  '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                  style: const TextStyle(fontSize: 15, color: Colors.white),
-                                  overflow: TextOverflow.clip,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            flex:1,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              //mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.arrow_circle_right_outlined,
-                                  size: 50,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20),
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetalleSolicitudScreen(solicitud: item),
                       ),
-                    
+                    );
+                  },
+                  child: Card(
+                    elevation: 5,
+                      color:Colors.grey[900],
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.black, // Color del borde
+                          width: 1.0, // Grosor del borde
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                            children: [
+                              Expanded(
+                                flex:4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sol. #${item['requests']}',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ), 
+                                    const SizedBox(height: 5),
+                                    value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    Text(
+                                      '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                flex:1,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  //mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_right_outlined,
+                                      size: 50,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                      ),
+                      
+                  ),
+                
                 ),
-              ),
               );
             },
         );
-    }
+  }
+  
+  Widget _buildNovedadesList(Datamodel value) {
+    return value.solicitudes_suministros.isEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'No hay datos registrados.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          )
+        : ListView.builder(
+            //padding: const EdgeInsets.symmetric(horizontal: 30),
+            itemCount: value.solicitudes_novedades.length,
+            itemBuilder: (context, index) {
+              final item = value.solicitudes_novedades[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20),
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetalleSolicitudScreen(solicitud: item),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    elevation: 5,
+                      color:Colors.grey[900],
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.black, // Color del borde
+                          width: 1.0, // Grosor del borde
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                            children: [
+                              Expanded(
+                                flex:4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sol. #${item['id']}',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ), 
+                                    const SizedBox(height: 5),
+                                    value.tipo != 'usuario' ? Text('De: ${item['EESS']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    Text(
+                                      '${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                flex:1,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  //mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_right_outlined,
+                                      size: 50,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                      ),
+                      
+                  ),
+                
+                ),
+              );
+            },
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -241,7 +350,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
 
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey[900],
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [
@@ -291,7 +400,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                       controller: _tabController,
                       children: [
                         _buildSolicitudesList(value),
-                        const Text('Hola'),
+                        _buildNovedadesList(value),
                         const Text('Hola 2'),
                       ],
                     ),

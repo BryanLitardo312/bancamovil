@@ -156,43 +156,46 @@ class _GlosarioState extends State<Glosario> {
                   
                 ),
               ),
+              SizedBox(height: screenHeight*0.04),
               Expanded(
-                child: Column(
-                  children: [
-                    ListView.builder(
-                      padding: const EdgeInsets.symmetric(horizontal: 30),
-                      shrinkWrap: true,
-                      itemCount: _items.length, // Número de elementos en la lista
-                      itemBuilder: (context, index) {
-                        return CheckboxListTile(
-                          title: Text(_items[index]['title'],style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                          subtitle: Text(_items[index]['subtitle'],style: const TextStyle(fontSize: 15),),
-                          value: _items[index]['value'],
-                          onChanged: (value) {
-                            setState(() {
-                              _items[index]['value'] = value!;
-                            });
-                          },
-                          activeColor: Color.fromARGB(255, 14, 97, 136), // Color del checkbox cuando está activo
-                          checkColor: Colors.white, // Color de la marca de verificación
-                          tileColor: Colors.grey[100],
-                        );
-                      },
-                    ),
-                    SizedBox(height: screenHeight*0.04),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 70),
-                      child: ButtonLogin2(
-                        onTap: valor.tipo == 'usuario' ? _submitForm : () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Servicio no disponible',style: TextStyle(fontSize: 18),)),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        shrinkWrap: true,
+                        itemCount: _items.length, // Número de elementos en la lista
+                        itemBuilder: (context, index) {
+                          return CheckboxListTile(
+                            title: Text(_items[index]['title'],style: const TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                            subtitle: Text(_items[index]['subtitle'],style: const TextStyle(fontSize: 15),),
+                            value: _items[index]['value'],
+                            onChanged: (value) {
+                              setState(() {
+                                _items[index]['value'] = value!;
+                              });
+                            },
+                            activeColor: Color.fromARGB(255, 14, 97, 136), // Color del checkbox cuando está activo
+                            checkColor: Colors.white, // Color de la marca de verificación
+                            tileColor: Colors.grey[100],
                           );
                         },
-                        text: 'ENVIAR SOLICITUD',
-                        icon: Icons.how_to_vote,
                       ),
-                    ),
-                  ],
+                      SizedBox(height: screenHeight*0.04),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 70),
+                        child: ButtonLogin2(
+                          onTap: valor.tipo == 'usuario' ? _submitForm : () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Servicio no disponible',style: TextStyle(fontSize: 18),)),
+                            );
+                          },
+                          text: 'ENVIAR SOLICITUD',
+                          icon: Icons.how_to_vote,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -286,65 +286,6 @@ class _PortadaState extends State<Portada> {
               
             ),
           ),
-          //const SizedBox(height: 15), 
-          /*Container(
-            //width: screenWidth * 0.9,
-            margin: const EdgeInsets.only(left: 30,right: 30,bottom: 30,top:20),
-            decoration: BoxDecoration(
-              color: Colors.grey[900],
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.grey[900] ?? Colors.black, width: 2),
-            ),
-            child: 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children:[
-                MyButton(
-                    onTap: () => Navigator.pushNamed(context, '/glosario'), 
-                    child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.local_shipping_rounded, size: 30,color: Colors.white),
-                      //SizedBox(height: 1),
-                      Text(
-                        'Materiales',
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-                MyButton(
-                    onTap: () => Navigator.pushNamed(context, '/busqueda'), 
-                    child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.account_balance, size: 30,color: Colors.white),
-                      //SizedBox(height: 1),
-                      Text(
-                        'Novedades',
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-                
-                MyButton(
-                    onTap: () => Navigator.pushNamed(context, '/data'), 
-                    child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.bar_chart, size: 30,color: Colors.white),
-                      //SizedBox(height: 1),
-                      Text(
-                        'Analítica',
-                        style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ),
-              ]
-            ),
-          ),*/
         ],
       ),
       backgroundColor: Colors.grey[100],
