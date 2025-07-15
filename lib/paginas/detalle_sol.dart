@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class DetalleSolicitudScreen extends StatefulWidget {
   final Map<String, dynamic> solicitud;
@@ -57,17 +58,15 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
           children: [
             SizedBox(height: 10),
             Center(
-              child: SizedBox(
+              child: Text('Solicitud #${widget.solicitud['requests']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
+              /*child: SizedBox(
                 height: 100,
                 width: 100,
                 child: CircleAvatar(
-                  child: Text('${widget.solicitud['requests']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.grey[900]),),
+                  backgroundColor: Colors.white,
+                  child: Text('#${widget.solicitud['requests']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.grey[900]),overflow: TextOverflow.clip,),
                   ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text('# Orden',
-            style:TextStyle(fontSize: 25,color:Colors.white,fontWeight: FontWeight.bold),
+              ),*/
             ),
             const SizedBox(height: 30),
             Container(
@@ -77,7 +76,13 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               padding: EdgeInsets.all(16.0),
-              child: Text('${widget.solicitud['estacion']}', style:TextStyle(fontSize: 17,color:Colors.white,fontWeight: FontWeight.bold),),
+              child: Row(
+                children: [
+                  Icon(Icons.location_history_rounded,color: Colors.blue,size:30),
+                  const SizedBox(width: 15),
+                  Text('${widget.solicitud['estacion']}', style:TextStyle(fontSize: 17,color:Colors.white,fontWeight: FontWeight.bold),overflow: TextOverflow.clip),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             Container(
@@ -87,7 +92,14 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               padding: EdgeInsets.all(16.0),
-              child: Text('Solicitud: ${widget.solicitud['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}', style:TextStyle(fontSize: 17,color:Colors.white)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.local_shipping_rounded,color: Colors.blue,size:30),
+                  const SizedBox(width: 15),
+                  Expanded(child: Text('${widget.solicitud['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+                ],
+              ),
             ),
             const SizedBox(height: 20),
             Container(
@@ -97,10 +109,16 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               padding: EdgeInsets.all(16.0),
-              child: Text('Solicitud: ${widget.solicitud['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}', style:TextStyle(fontSize: 17,color:Colors.white)),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.calendar_month_rounded,color: Colors.blue,size:30),
+                  const SizedBox(width: 15),
+                  Expanded(child: Text('${DateFormat('dd-MM-yyyy').format(DateTime.parse(widget.solicitud['created_at']))}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+                ],
+              ),
             ),
-            const SizedBox(height: 20),
-            Padding(
+            /*Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: TextField(
                 //controller: _nombreController,
@@ -120,7 +138,7 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 ),
                 style: const TextStyle(color: Colors.white),
               ),
-            ),
+            ),*/
           ],
         ),
       ),
