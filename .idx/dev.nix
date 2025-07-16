@@ -5,6 +5,7 @@
     pkgs.unzip
     pkgs.sudo
     pkgs.apt
+    pkgs.cmkae
   ];
   idx.extensions = [
     

@@ -14,13 +14,9 @@ class EnlaceExterno extends StatelessWidget {
   }) : super(key: key);
 
   Future<void> _abrirEnlace() async {
-    if (await canLaunch(url)) {
-    await launch(
-      url,
-      forceSafariVC: false, // Para iOS
-      forceWebView: false,
-    );
-  }
+    if (!await launchUrl(Uri.parse(url))) {
+      throw 'No se pudo abrir $url';
+    }
   }
 
   @override
