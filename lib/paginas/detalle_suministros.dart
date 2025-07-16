@@ -173,7 +173,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             Center(
               child: Text('Solicitud #${widget.solicitud['requests']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 40),
             Container(
               width:screenWidth*0.80,
               decoration: BoxDecoration(

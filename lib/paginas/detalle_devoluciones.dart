@@ -175,7 +175,7 @@ class _DetalleDevolucionScreenState extends State<DetalleDevolucionScreen> {
             Center(
               child: Text('Solicitud #${widget.solicitud['id']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 40),
             Container(
               width:screenWidth*0.80,
               decoration: BoxDecoration(

@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
 import 'package:bancamovil/models/quejas.dart';
+import 'package:bancamovil/componentes/download.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class DetalleNovedadScreen extends StatefulWidget {
   final Map<String, dynamic> solicitud;
@@ -173,7 +176,7 @@ class _DetalleNovedadScreenState extends State<DetalleNovedadScreen> {
             Center(
               child: Text('Solicitud #${widget.solicitud['id']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 40),
             Container(
               width:screenWidth*0.80,
               decoration: BoxDecoration(
@@ -315,6 +318,10 @@ class _DetalleNovedadScreenState extends State<DetalleNovedadScreen> {
                       ),
                     ),
                   ),
+                ),
+                EnlaceExterno(
+                  url: widget.solicitud['URL_PUBLICA'].toString(),
+                  texto: 'Ver documento en línea',
                 ),
               ],
             ),
