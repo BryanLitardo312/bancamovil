@@ -1,35 +1,52 @@
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
-class EnlaceExterno extends StatelessWidget {
-  final String url;
-  final String texto;
-  final TextStyle? estiloTexto;
+/*Future<File> downloadFileFromSupabase({
+  required String bucketName,
+  required String filePath,
+  
+}) async {
+  // 1. Obtener el directorio de descargas del dispositivo
+  final Directory dir = await getApplicationDocumentsDirectory();
+  final String localPath = '${dir.path}/$fileName';
+  print(localPath);
 
-  const EnlaceExterno({
-    Key? key,
-    required this.url,
-    required this.texto,
-    this.estiloTexto,
-  }) : super(key: key);
+  // 2. Descargar el archivo desde Supabase Storage
+  final SupabaseClient supabase = Supabase.instance.client;
+  final List<int> fileBytes = await supabase
+      .storage
+      .from(bucketName)
+      .download(filePath);
 
-  Future<void> _abrirEnlace() async {
-    if (!await launchUrl(Uri.parse(url))) {
-      throw 'No se pudo abrir $url';
-    }
-  }
+  // 3. Guardar localmente
+  final File localFile = File(localPath);
+  await localFile.writeAsBytes(fileBytes);
 
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: _abrirEnlace,
-      child: Text(
-        texto,
-        style: estiloTexto ?? const TextStyle(
-          color: Colors.red,
-          decoration: TextDecoration.underline,
-        ),
-      ),
-    );
+  return localFile;
+}*/
+
+Future<File?> downloadFileFromSupabase({
+  required String bucketName,
+  required String filePath,
+}) async {
+  try {
+    final SupabaseClient supabase = Supabase.instance.client;
+    // Descarga el archivo desde Supabase
+    final bytes = await supabase.storage
+        .from(bucketName)
+        .download(filePath);
+
+    // Guarda en la carpeta pública de descargas
+    final publicDir = await getDownloadsDirectory();
+    print(publicDir); // Requiere <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    final publicFile = File('${publicDir?.path}/${filePath.split('/').last}');
+    print(publicFile);
+    await publicFile.writeAsBytes(bytes);
+
+    return publicFile;
+  } catch (e) {
+    print('Error: $e');
+    return null;
   }
 }

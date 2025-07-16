@@ -294,20 +294,24 @@ class _DetalleNovedadScreenState extends State<DetalleNovedadScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                
                 SizedBox(
                   width:screenWidth*0.80,
                   height:50,
                   child: ElevatedButton.icon(
-                    onPressed: () => value.tipo == 'usuario'
-                      ? _submitForm(widget.solicitud)
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Servicio no disponible',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ),
+                    onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Archivo disponible en: ${widget.solicitud['URL_PUBLICA']}'),
+                        duration: const Duration(seconds: 5),
+                        action: SnackBarAction(
+                          label: 'Abrir',
+                          onPressed: () {
+                            // Usar el paquete `url_launcher` para abrir en el navegador
+                            launchUrl(Uri.parse(widget.solicitud['URL_PUBLICA']));
+                          },
                         ),
+                      ),
+                    ),
                     icon: const Icon(Icons.email_rounded,size:20),
                     label: const Text('Enviar',style:TextStyle(fontSize: 17,color:Colors.white)),
                     style: ElevatedButton.styleFrom(
@@ -319,10 +323,7 @@ class _DetalleNovedadScreenState extends State<DetalleNovedadScreen> {
                     ),
                   ),
                 ),
-                EnlaceExterno(
-                  url: widget.solicitud['URL_PUBLICA'].toString(),
-                  texto: 'Ver documento en línea',
-                ),
+                
               ],
             ),
           ],
