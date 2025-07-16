@@ -2,7 +2,7 @@ import 'package:bancamovil/auth/gate.dart';
 //import 'package:bancamovil/paginas/NewPass.dart';
 import 'package:bancamovil/paginas/data.dart';
 import 'package:bancamovil/paginas/quejaspage.dart';
-import 'package:bancamovil/paginas/reset_page.dart';
+//import 'package:bancamovil/paginas/reset_page.dart';
 import 'package:bancamovil/paginas/solicitudes_novedades.dart';
 import 'package:bancamovil/paginas/solicitudes_suministros.dart';
 import 'package:bancamovil/paginas/home.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
         '/novedadesr':(context)=>const NovedadesR(),
         '/login':(context)=> LoginPage(onTap: () {}),
         '/registro':(context)=> RegistroPage(onTap: () {}),
-        '/reset-password':(context)=> ResetPage(),
+        //'/reset-password':(context)=> ResetPage(),
         //'/newpass': (context)=> SetNewPasswordPage(),
         '/data':(context) => Data(),
         '/quejas':(context)=> QuejasPage(),

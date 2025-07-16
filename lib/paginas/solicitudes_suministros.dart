@@ -1,11 +1,13 @@
-import 'package:bancamovil/paginas/detalle_sol.dart';
+import 'package:bancamovil/paginas/detalle_suministros.dart';
+import 'package:bancamovil/paginas/detalle_novedades.dart';
+import 'package:bancamovil/paginas/detalle_devoluciones.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
-import 'package:bancamovil/models/quejas.dart';
+//import 'package:bancamovil/models/quejas.dart';
 import 'package:bancamovil/componentes/tab_bar.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 
 
 
@@ -175,7 +177,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetalleSolicitudScreen(solicitud: item),
+                        builder: (context) => DetalleSuministroScreen(solicitud: item),
                       ),
                     );
                   },
@@ -276,7 +278,107 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetalleSolicitudScreen(solicitud: item),
+                        builder: (context) => DetalleNovedadScreen(solicitud: item),
+                      ),
+                    );
+                  },
+                  child: Card(
+                    elevation: 5,
+                      color:Colors.grey[900],
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.black, // Color del borde
+                          width: 1.0, // Grosor del borde
+                        ),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                            children: [
+                              Expanded(
+                                flex:4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sol. #${item['id']}',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ), 
+                                    const SizedBox(height: 5),
+                                    value.tipo != 'usuario' ? Text('De: ${item['EESS']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    Text(
+                                      '${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                flex:1,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  //mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.arrow_right_outlined,
+                                      size: 50,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                      ),
+                      
+                  ),
+                
+                ),
+              );
+            },
+        );
+  }
+  Widget _buildDevolucionesList(Datamodel value) {
+    return value.solicitudes_suministros.isEmpty
+        ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.info_outline,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'No hay datos registrados.',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          )
+        : ListView.builder(
+            //padding: const EdgeInsets.symmetric(horizontal: 30),
+            itemCount: value.solicitudes_novedades.length,
+            itemBuilder: (context, index) {
+              final item = value.solicitudes_novedades[index];
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20),
+                child: InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetalleDevolucionScreen(solicitud: item),
                       ),
                     );
                   },
@@ -401,7 +503,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                       children: [
                         _buildSolicitudesList(value),
                         _buildNovedadesList(value),
-                        const Text('Hola 2'),
+                        _buildDevolucionesList(value),
                       ],
                     ),
                   ),

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:bancamovil/componentes/drawer.dart';
+//import 'package:bancamovil/componentes/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
 import 'package:bancamovil/models/quejas.dart';
 
-class DetalleSolicitudScreen extends StatefulWidget {
+class DetalleSuministroScreen extends StatefulWidget {
   final Map<String, dynamic> solicitud;
   
-  const DetalleSolicitudScreen({Key? key, required this.solicitud}) : super(key: key);
+  const DetalleSuministroScreen({Key? key, required this.solicitud}) : super(key: key);
   
   @override
-  _DetalleSolicitudScreenState createState() => _DetalleSolicitudScreenState();
+  _DetalleSuministroScreenState createState() => _DetalleSuministroScreenState();
 
 
 }
-class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
+class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
   late TextEditingController _nombreController;
   late TextEditingController _apellidoController;
   final quejasBanco = QuejasBanco();
@@ -103,10 +103,10 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
               onPressed: () async {
                 final newNote = BancoQuejas(
                   //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
-                  bodega: item['BODEGA'],
-                  estacion: item['EESS'],
-                  proceso: 'Novedades bancarias',
-                  detalle: item['SECUENCIAL'],
+                  bodega: item['bodega'],
+                  estacion: item['estacion'],
+                  proceso: 'Suministros',
+                  detalle: item['detalle'],
                   salida: item['created_at'],
                   observacion: valor.noteController.text.toString(),
                 );
@@ -114,7 +114,6 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                   //print('Datos a enviar: ${item['NOMBRE']}');
                   await quejasBanco.createForm(newNote);
                   Navigator.pop(context);
-                  
                   valor.noteController.clear();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Notificación enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
@@ -220,7 +219,7 @@ class _DetalleSolicitudScreenState extends State<DetalleSolicitudScreen> {
                 children: [
                   Icon(Icons.calendar_month_rounded,color: Colors.white,size:30),
                   const SizedBox(width: 15),
-                  Expanded(child: Text('${DateFormat('dd-MM-yyyy').format(DateTime.parse(widget.solicitud['created_at']))}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+                  Expanded(child: Text(DateFormat('dd-MM-yyyy').format(DateTime.parse(widget.solicitud['created_at'])), style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
                 ],
               ),
             ),
