@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
 import 'package:bancamovil/models/quejas.dart';
-import 'package:bancamovil/componentes/download.dart';
+//import 'package:bancamovil/componentes/download.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 

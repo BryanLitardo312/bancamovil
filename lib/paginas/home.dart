@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'package:bancamovil/componentes/cardwallet.dart';
 import 'package:bancamovil/models/wallet.dart';
+import 'package:bancamovil/servi_noti.dart';
 import 'package:flutter/material.dart';
 //import '../../componentes/navbar.dart';
 import 'package:bancamovil/componentes/drawer.dart';
 import 'package:bancamovil/componentes/button_detail.dart';
 import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
+
 
 class Portada extends StatefulWidget {
   const Portada ({super.key});
@@ -104,13 +106,28 @@ class _PortadaState extends State<Portada> {
                     ),
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children:[
-                  Text('Hola,', style: TextStyle(color: Colors.grey[600], fontSize: 17)),
-                  Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
-                ],
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:[
+                        Text('Hola,', style: TextStyle(color: Colors.grey[600], fontSize: 17)),
+                        Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:[
+                        ElevatedButton(onPressed: () {NotiService().showNotification(id:1,title:'Hello',body:'Este es un mensaje opcional',);}, child: Text('Notificar')),
+                        const SizedBox(height: 5),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
