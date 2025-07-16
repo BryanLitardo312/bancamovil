@@ -19,13 +19,14 @@ class Textfield extends StatelessWidget{
           obscureText: obscureText,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[900] ?? Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(10),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black, 
+                width: 2,
+              ),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[900] ?? Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(10),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black, width: 2),
             ),
             hintText: hintText,
             hintStyle: TextStyle(
@@ -77,13 +78,14 @@ class _Textfield2State extends State<Textfield2> {
           obscureText: _obscureText,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[900] ?? Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(10),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.black, 
+                width: 2,
+              ),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[900] ?? Colors.black, width: 2),
-              borderRadius: BorderRadius.circular(10),
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.black, width: 2),
             ),
             hintText: widget.hintText,
             hintStyle: TextStyle(color: Colors.grey[900]),

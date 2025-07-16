@@ -2,6 +2,7 @@ import 'package:bancamovil/auth/auth.dart';
 import 'package:bancamovil/componentes/button_login.dart';
 import 'package:flutter/material.dart';
 import 'package:bancamovil/componentes/textfield.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function() onTap;
@@ -15,11 +16,38 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController emailcontroller = TextEditingController();
   final TextEditingController passwordcontroller = TextEditingController();
   bool _obscureText = true;
+  bool _rememberMe = false;
   int failedAttempts = 0; // Contador de intentos fallidos
   bool isUserBlocked = false; 
 
-  void login() async{
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedEmail(); // Cargar el correo guardado al iniciar
+  }
 
+  // Cargar el correo guardado
+  Future<void> _loadSavedEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      emailcontroller.text = prefs.getString('saved_email') ?? '';
+      _rememberMe = prefs.getString('saved_email') != null;
+    });
+  }
+  // Guardar o borrar el correo según el checkbox
+  Future<void> _handleRememberMe(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _rememberMe = value;
+    });
+    if (value) {
+      await prefs.setString('saved_email', emailcontroller.text);
+    } else {
+      await prefs.remove('saved_email');
+    }
+  }
+
+  void login() async{
     if (isUserBlocked) {
       showDialog(
         context: context,
@@ -38,6 +66,11 @@ class _LoginPageState extends State<LoginPage> {
           email: emailcontroller.text,
           password: passwordcontroller.text,
         );
+        // Guardar el correo si "Recordarme" está activado
+        if (_rememberMe) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('saved_email', emailcontroller.text);
+        }
         emailcontroller.clear();
         passwordcontroller.clear();
         failedAttempts = 0;
@@ -104,9 +137,9 @@ class _LoginPageState extends State<LoginPage> {
               //const SizedBox(height: 100),
               //Image.asset('lib/imagenes/primax_logo2.png', width: screenWidth*0.9),
               //SizedBox(height: screenHeight*0.31),
-              SizedBox(height: screenHeight*0.05),
+              //const SizedBox(height: 60),
               Image.asset('lib/imagenes/logo-primax.png', width: screenWidth*0.65),
-              SizedBox(height: screenHeight*0.10),
+              const SizedBox(height: 50),
               //const Text('Bienvenido', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
               Textfield(
                 controller: emailcontroller,
@@ -114,36 +147,38 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: false,
                 suffixIcon: const Icon(Icons.email_outlined),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
               Textfield2(
                 controller: passwordcontroller,
                 obscureText: _obscureText,
                 hintText: 'Contraseña',
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: Row(
+                  children: [
+                    Checkbox(
+                      value: _rememberMe,
+                      onChanged: (value) => _handleRememberMe(value!),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5), // Bordes redondeados
+                      ),
+                      side: BorderSide(
+                        color: Colors.grey[800]!, // Color del borde
+                        width: 2,
+                      ),
+                      activeColor: Colors.blue, // Color del checkbox
+                    ),
+                    const Text('Recordar mi correo'),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
               ButtonLogin(
                 onTap: login,
                 text: 'Iniciar sesión',
                 icon: Icons.login,
-              ),
-              const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Crecemos con', style: TextStyle(color: Colors.black,fontSize: 15),),
-                    Text(' energía', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 15)),
-                    Text(' y', style: TextStyle(color: Colors.black,fontSize: 15)),
-                    Text(' pasión', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,fontSize: 15)),
-                    /*GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/reset-password');
-                      },
-                      child: Text('¿Olvidó su contraseña?', style: TextStyle(color: Colors.grey[900],fontSize: 16)),
-                    ),*/
-                  ],
-                ),
               ),
             ],
             
