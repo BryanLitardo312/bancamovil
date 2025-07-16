@@ -3,6 +3,8 @@
   packages = [
     pkgs.jdk17
     pkgs.unzip
+    pkgs.sudo
+    pkgs.apt
   ];
   idx.extensions = [
     

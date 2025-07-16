@@ -14,12 +14,13 @@ class EnlaceExterno extends StatelessWidget {
   }) : super(key: key);
 
   Future<void> _abrirEnlace() async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(
-        Uri.parse(url),
-        mode: LaunchMode.externalApplication,
-      );
-    }
+    if (await canLaunch(url)) {
+    await launch(
+      url,
+      forceSafariVC: false, // Para iOS
+      forceWebView: false,
+    );
+  }
   }
 
   @override
@@ -29,7 +30,7 @@ class EnlaceExterno extends StatelessWidget {
       child: Text(
         texto,
         style: estiloTexto ?? const TextStyle(
-          color: Colors.blue,
+          color: Colors.red,
           decoration: TextDecoration.underline,
         ),
       ),

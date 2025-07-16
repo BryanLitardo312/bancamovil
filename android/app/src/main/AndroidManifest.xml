@@ -9,6 +9,8 @@
         android:label="PrimaxBank"
         android:name="${applicationName}"
         android:requestLegacyExternalStorage="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
