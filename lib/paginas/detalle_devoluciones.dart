@@ -165,162 +165,165 @@ class _DetalleDevolucionScreenState extends State<DetalleDevolucionScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            //Text('${widget.solicitud}',style:TextStyle(color: Colors.amber)),
-            Center(
-              child: Text('Solicitud #${widget.solicitud['id']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
-            ),
-            const SizedBox(height: 40),
-            Container(
-              width:screenWidth*0.80,
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(15.0),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //const SizedBox(height: 20),
+              //Text('${widget.solicitud}',style:TextStyle(color: Colors.amber)),
+              Center(
+                child: Text('Solicitud #${widget.solicitud['id']}',style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),overflow: TextOverflow.clip,),
               ),
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  Icon(Icons.location_history_rounded,color: Colors.white,size:30),
-                  const SizedBox(width: 15),
-                  Text('${widget.solicitud['EESS']}', style:TextStyle(fontSize: 17,color:Colors.white,fontWeight: FontWeight.bold),overflow: TextOverflow.clip),
-                ],
-              ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              width:screenWidth*0.80,
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.folder_copy_rounded,color: Colors.white,size:30),
-                  const SizedBox(width: 15),
-                  Expanded(child: Text('${widget.solicitud['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
-                ],
-              ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              width:screenWidth*0.80,
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.lock_clock_rounded,color: Colors.white,size:30),
-                  const SizedBox(width: 15),
-                  Expanded(child: Text('${widget.solicitud['SECUENCIAL']}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
-                ],
-              ),
-            ),
-            const SizedBox(height: 15),
-            Container(
-              width:screenWidth*0.80,
-              decoration: BoxDecoration(
-                color: Colors.grey[800],
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(Icons.calendar_month_rounded,color: Colors.white,size:30),
-                  const SizedBox(width: 15),
-                  Expanded(child: Text(DateFormat('dd-MM-yyyy').format(DateTime.parse(widget.solicitud['created_at'])), style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
-                ],
-              ),
-            ),
-            const SizedBox(height: 30),
-            widget.solicitud['URL_PUBLICA'] == null ? 
-            SizedBox(
-              width:screenWidth*0.80,
-              height:50,
-              child: ElevatedButton.icon(
-                onPressed: () => value.tipo == 'usuario'
-                  ? _submitForm(widget.solicitud)
-                  : ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Servicio no disponible',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                icon: const Icon(Icons.notifications_active,size:20),
-                label: const Text('Notificar',style:TextStyle(fontSize: 17,color:Colors.white)),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 233, 39, 26),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+              const SizedBox(height: 40),
+              Container(
+                width:screenWidth*0.80,
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.location_history_rounded,color: Colors.white,size:30),
+                    const SizedBox(width: 15),
+                    Text('${widget.solicitud['EESS']}', style:TextStyle(fontSize: 17,color:Colors.white,fontWeight: FontWeight.bold),overflow: TextOverflow.clip),
+                  ],
                 ),
               ),
-            ) : Column(
-              children: [
-                SizedBox(
-                  width:screenWidth*0.80,
-                  //padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: TextField(
-                    //controller: _nombreController,
-                    decoration: InputDecoration(
-                      labelText: 'Comentarios',
-                      labelStyle: const TextStyle(color: Colors.white),
-                      filled: true,
-                      fillColor: Colors.grey[800],
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Colors.white),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Color.fromARGB(255, 40, 125, 43)),
-                      ),
-                    ),
-                    style: const TextStyle(color: Colors.white),
-                  ),
+              const SizedBox(height: 15),
+              Container(
+                width:screenWidth*0.80,
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                const SizedBox(height: 20),
-                SizedBox(
-                  width:screenWidth*0.80,
-                  height:50,
-                  child: ElevatedButton.icon(
-                    onPressed: () => value.tipo == 'usuario'
-                      ? _submitForm(widget.solicitud)
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Servicio no disponible',
-                              style: TextStyle(fontSize: 18),
-                            ),
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.folder_copy_rounded,color: Colors.white,size:30),
+                    const SizedBox(width: 15),
+                    Expanded(child: Text('${widget.solicitud['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              Container(
+                width:screenWidth*0.80,
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.lock_clock_rounded,color: Colors.white,size:30),
+                    const SizedBox(width: 15),
+                    Expanded(child: Text('${widget.solicitud['SECUENCIAL']}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 15),
+              Container(
+                width:screenWidth*0.80,
+                decoration: BoxDecoration(
+                  color: Colors.grey[800],
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                padding: EdgeInsets.all(16.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(Icons.calendar_month_rounded,color: Colors.white,size:30),
+                    const SizedBox(width: 15),
+                    Expanded(child: Text(DateFormat('dd-MM-yyyy').format(DateTime.parse(widget.solicitud['created_at'])), style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              widget.solicitud['URL_PUBLICA'] == null ? 
+              SizedBox(
+                width:screenWidth*0.80,
+                height:50,
+                child: ElevatedButton.icon(
+                  onPressed: () => value.tipo == 'usuario'
+                    ? _submitForm(widget.solicitud)
+                    : ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Servicio no disponible',
+                            style: TextStyle(fontSize: 18),
                           ),
                         ),
-                    icon: const Icon(Icons.email_rounded,size:20),
-                    label: const Text('Enviar',style:TextStyle(fontSize: 17,color:Colors.white)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 42, 147, 45),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
                       ),
+                  icon: const Icon(Icons.notifications_active,size:20),
+                  label: const Text('Notificar demora',style:TextStyle(fontSize: 17,color:Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 233, 39, 26),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
+              ) : Column(
+                children: [
+                  SizedBox(
+                    width:screenWidth*0.80,
+                    //padding: const EdgeInsets.symmetric(horizontal: 50),
+                    child: TextField(
+                      //controller: _nombreController,
+                      decoration: InputDecoration(
+                        labelText: 'Comentarios',
+                        labelStyle: const TextStyle(color: Colors.white),
+                        filled: true,
+                        fillColor: Colors.grey[800],
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: Colors.white),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(color: Color.fromARGB(255, 40, 125, 43)),
+                        ),
+                      ),
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                    width:screenWidth*0.80,
+                    height:50,
+                    child: ElevatedButton.icon(
+                      onPressed: () => value.tipo == 'usuario'
+                        ? _submitForm(widget.solicitud)
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Servicio no disponible',
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            ),
+                          ),
+                      icon: const Icon(Icons.email_rounded,size:20),
+                      label: const Text('Enviar',style:TextStyle(fontSize: 17,color:Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 42, 147, 45),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 50),
+            ],
+          ),
         ),
       ),
     ),

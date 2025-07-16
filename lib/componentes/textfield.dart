@@ -22,7 +22,7 @@ class Textfield extends StatelessWidget{
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.black, 
-                width: 2,
+                width: 1,
               ),
             ),
             focusedBorder: UnderlineInputBorder(
@@ -81,7 +81,7 @@ class _Textfield2State extends State<Textfield2> {
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.black, 
-                width: 2,
+                width: 1,
               ),
             ),
             focusedBorder: UnderlineInputBorder(

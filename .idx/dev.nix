@@ -6,6 +6,7 @@
     pkgs.sudo
     pkgs.apt
     pkgs.cmake
+    pkgs.polkit.bin
   ];
   idx.extensions = [
     

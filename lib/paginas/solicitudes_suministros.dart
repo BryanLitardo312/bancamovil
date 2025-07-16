@@ -7,7 +7,7 @@ import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
 //import 'package:bancamovil/models/quejas.dart';
 import 'package:bancamovil/componentes/tab_bar.dart';
-//import 'package:intl/intl.dart';
+import 'package:intl/intl.dart';
 
 
 
@@ -182,8 +182,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                     );
                   },
                   child: Card(
-                    elevation: 5,
-                      color:Colors.grey[900],
+                    elevation: 7,
+                      color:Colors.black,
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
                           color: Colors.black, // Color del borde
@@ -209,10 +209,16 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    //Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,),
                                     Text(
-                                      '${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                                      'MATERIALES: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                    Text(
+                                      'FECHA: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
                                   ],
@@ -225,9 +231,9 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                   //mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(
-                                      Icons.arrow_right_outlined,
-                                      size: 50,
-                                      color: Colors.white,
+                                      Icons.keyboard_arrow_right_rounded,
+                                      size: 70,
+                                      color: Colors.white
                                     ),
                                   ],
                                 ),
@@ -283,8 +289,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                     );
                   },
                   child: Card(
-                    elevation: 5,
-                      color:Colors.grey[900],
+                    elevation: 7,
+                      color:Colors.black,
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
                           color: Colors.black, // Color del borde
@@ -310,10 +316,15 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    value.tipo != 'usuario' ? Text('De: ${item['EESS']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
                                     Text(
-                                      '${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                                      'DETALLE: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                    Text(
+                                      'FECHA: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
                                   ],
@@ -326,8 +337,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                   //mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(
-                                      Icons.arrow_right_outlined,
-                                      size: 50,
+                                      Icons.keyboard_arrow_right_rounded,
+                                      size: 70,
                                       color: Colors.white,
                                     ),
                                   ],
@@ -383,8 +394,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                     );
                   },
                   child: Card(
-                    elevation: 5,
-                      color:Colors.grey[900],
+                    elevation: 7,
+                      color:Colors.black,
                       shape: RoundedRectangleBorder(
                         side: BorderSide(
                           color: Colors.black, // Color del borde
@@ -410,10 +421,15 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    value.tipo != 'usuario' ? Text('De: ${item['EESS']}', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
                                     Text(
-                                      '${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                      style: const TextStyle(fontSize: 15, color: Colors.white),
+                                      'DETALLE: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                                      overflow: TextOverflow.clip,
+                                    ),
+                                    Text(
+                                      'FECHA: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
                                   ],
@@ -426,8 +442,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                   //mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(
-                                      Icons.arrow_right_outlined,
-                                      size: 50,
+                                      Icons.keyboard_arrow_right_rounded,
+                                      size: 70,
                                       color: Colors.white,
                                     ),
                                   ],

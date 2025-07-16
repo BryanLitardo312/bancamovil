@@ -27,14 +27,14 @@ class MyTabBar extends StatelessWidget {
       ],
       isScrollable: false,
       dividerColor: Colors.grey[900],
-      indicatorColor: Colors.red,
+      indicatorColor: Colors.blue,
       labelStyle: const TextStyle(
-        fontSize: 17,
+        fontSize: 18,
         fontWeight: FontWeight.bold,
         color: Colors.white,
       ),
       labelColor: Colors.white,
-      /*unselectedLabelColor: Colors.grey[400],*/
+      unselectedLabelColor: Colors.grey[500],
     );
   }
 }

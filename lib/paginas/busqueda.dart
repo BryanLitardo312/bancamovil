@@ -486,7 +486,7 @@ class _BusquedaState extends State<Busqueda> {
                               size: 45,
                             ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/novedadesr');// Acción al presionar el icono derecho
+                        Navigator.pushNamed(context, '/suministrosr');// Acción al presionar el icono derecho
                       },
                     ),
                   ),
