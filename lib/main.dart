@@ -17,6 +17,7 @@ import 'package:bancamovil/paginas/login_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
+import 'package:bancamovil/paginas/chat.dart';
 //import 'package:bancamovil/servi_noti.dart';
 
 
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
         //'/newpass': (context)=> SetNewPasswordPage(),
         '/data':(context) => Data(),
         '/quejas':(context)=> QuejasPage(),
+        '/chat':(context)=> ChatPage(),
         '/perfil':(context)=> PerfilPage(),
       },
     );

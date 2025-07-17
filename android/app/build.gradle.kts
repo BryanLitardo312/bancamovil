@@ -25,7 +25,7 @@ android {
         applicationId = "com.example.bancamovil"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion// Replace 21 with your desired minimum SDK version
+        minSdk = 23// Replace 21 with your desired minimum SDK version
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode//flutter.versionCode
         versionName = flutter.versionName

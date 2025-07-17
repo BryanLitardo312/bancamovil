@@ -95,7 +95,7 @@ class MyDrawer extends StatelessWidget {
                   title: const Text('Sugerencias', style: TextStyle(color: Colors.white,fontSize: 17)),
                   //selected: _currentIndex == 2,
                   onTap: () {
-                    Navigator.popAndPushNamed(context, '/quejas');
+                    Navigator.popAndPushNamed(context, '/chat');
                   },
                 ),
               ),
