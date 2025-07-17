@@ -23,11 +23,11 @@ import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotiService().initNotification();
   await Supabase.initialize(
     url: "https://cvfwvsvnpbwvhukasdtm.supabase.co",
     anonKey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2Znd2c3ZucGJ3dmh1a2FzZHRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk2MzkwNTgsImV4cCI6MjA1NTIxNTA1OH0.JQ1g27dHkG0NIb3YSLL3040TtFAETj9WSu_1ekcYx4c',
   );
-  NotiService().initNotification();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,   // Vertical normal
   ]).then((_) {

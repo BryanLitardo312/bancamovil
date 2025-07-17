@@ -68,7 +68,6 @@ class _PortadaState extends State<Portada> {
   Widget build(BuildContext context) {
     //final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
-    
     return Consumer<Datamodel>(
       builder:(context,value,child)=>Scaffold(
       appBar:AppBar(
@@ -118,14 +117,16 @@ class _PortadaState extends State<Portada> {
                         Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
                       ],
                     ),
+                    //value.correoInicio == 'brodriguezl@atimasa.com.ec' ? 
+                    value.tipo == 'admin' ?
+
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children:[
-                        ElevatedButton(onPressed: () {NotiService().showNotification(id:1,title:'Hello',body:'Este es un mensaje opcional',);}, child: Text('Notificar')),
-                        const SizedBox(height: 5),
+                        ElevatedButton(onPressed: () { NotiService().showNotification(title:'Breaking News',body:'Se actualizó el estado de cuenta.',);}, child: Icon(Icons.update,size:30,color:Colors.black)),
                       ],
-                    ),
+                    ) : SizedBox.shrink(),
                   ],
                 ),
               ),
