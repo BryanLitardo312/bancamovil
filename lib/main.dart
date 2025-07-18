@@ -1,4 +1,5 @@
 import 'package:bancamovil/auth/gate.dart';
+import 'package:bancamovil/chat/chat_provider.dart';
 //import 'package:bancamovil/paginas/NewPass.dart';
 import 'package:bancamovil/paginas/data.dart';
 import 'package:bancamovil/paginas/quejaspage.dart';
@@ -34,10 +35,17 @@ void main() async {
     DeviceOrientation.portraitUp,   // Vertical normal
   ]).then((_) {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => Datamodel(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Datamodel()),
+        ChangeNotifierProvider(create: (_) => ChatProvider()),
+      ],
       child: MyApp(),
     ),
+    /*ChangeNotifierProvider(
+      create: (context) => Datamodel(),
+      child: MyApp(),
+    ),*/
   );
   });
 }
