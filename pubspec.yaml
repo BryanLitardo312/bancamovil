@@ -115,6 +115,7 @@ flutter:
     - lib/imagenes/logo-primax.png
     - lib/imagenes/gasolinera.png
     - lib/imagenes/Alborada.jpeg
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
