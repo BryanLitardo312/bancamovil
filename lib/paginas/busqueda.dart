@@ -314,7 +314,7 @@ class _BusquedaState extends State<Busqueda> {
                   },
                 ),
               ),
-              SizedBox(height: screenHeight*0.02),
+              SizedBox(height: screenHeight*0.01),
               
               Expanded(
                 child: Container(
@@ -376,7 +376,7 @@ class _BusquedaState extends State<Busqueda> {
                                             SnackBar(content: Text("Servicio no disponible",style:TextStyle(fontSize: 18))),
                                           );
                                         },
-                                        backgroundColor: Colors.red,
+                                        backgroundColor: const Color.fromARGB(255, 233, 39, 26),
                                         foregroundColor: Colors.white,
                                         icon: Icons.folder_copy_rounded,
                                         flex:2,

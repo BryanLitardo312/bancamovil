@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bancamovil/componentes/cardwallet.dart';
 import 'package:bancamovil/models/wallet.dart';
-import 'package:bancamovil/servi_noti.dart';
+//import 'package:bancamovil/servi_noti.dart';
 import 'package:flutter/material.dart';
 //import '../../componentes/navbar.dart';
 import 'package:bancamovil/componentes/drawer.dart';
@@ -87,7 +87,9 @@ class _PortadaState extends State<Portada> {
         child: MyDrawer(),
       ),
       body:
-      Column(
+      value.isLoading ? const Center(
+        child: CircularProgressIndicator(color: Colors.blue),
+        ) : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [

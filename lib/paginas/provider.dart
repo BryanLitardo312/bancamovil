@@ -41,7 +41,9 @@ class Datamodel extends ChangeNotifier {
   Map<String, dynamic> userData = {};
   String genero_list = 'Masculino';
   List<String> opcionesGenero = ['Masculino', 'Femenino'];
-  
+  bool isLoading = false;
+
+
   void clearData() {
     userId = null;
     userData.clear();
@@ -238,6 +240,7 @@ class Datamodel extends ChangeNotifier {
   
 
   void _initializeAndProcessStream() async{
+    isLoading = true;
     final supabase = Supabase.instance.client;
     final user = supabase.auth.currentUser;
     if (user != null) {
@@ -435,5 +438,6 @@ class Datamodel extends ChangeNotifier {
         print('No hay usuario autenticado');
       }
     }
+    isLoading = false;
   }
 }
