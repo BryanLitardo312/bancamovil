@@ -50,7 +50,7 @@ class card_wallet extends StatelessWidget {
           ),
           const Column(
             children: [
-              Icon(Icons.memory, color: Colors.white,size: 50,),
+              Icon(Icons.memory, color: Colors.white,size: 45,),
             ],
           ),
         ],

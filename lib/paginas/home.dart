@@ -106,28 +106,42 @@ class _PortadaState extends State<Portada> {
                 ),
               ),
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[
-                        Text('Hola,', style: TextStyle(color: Colors.grey[600], fontSize: 17)),
-                        Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
-                      ],
-                    ),
-                    //value.correoInicio == 'brodriguezl@atimasa.com.ec' ? 
-                    value.tipo == 'admin' ?
-
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[
-                        ElevatedButton(onPressed: () { NotiService().showNotification(title:'Breaking News',body:'Se actualizó el estado de cuenta.',);}, child: Icon(Icons.update,size:30,color:Colors.black)),
-                      ],
-                    ) : SizedBox.shrink(),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.only(right:30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:[
+                          Text('Hola,', style: TextStyle(color: Colors.grey[600], fontSize: 17)),
+                          Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
+                        ],
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.popAndPushNamed(context, '/chat');
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.forum_sharp, size: 30, color: Colors.grey[900]),
+                          ],
+                        ),
+                      ),
+                      //value.correoInicio == 'brodriguezl@atimasa.com.ec' ? 
+                      /*value.tipo == 'admin' ?
+                  
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children:[
+                          ElevatedButton(onPressed: () { NotiService().showNotification(title:'Breaking News',body:'Se actualizó el estado de cuenta.',);}, child: Icon(Icons.update,size:30,color:Colors.black)),
+                        ],
+                      ) : SizedBox.shrink(),*/
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -176,18 +190,18 @@ class _PortadaState extends State<Portada> {
               children: [
                 Container(
                   //height: 45,
-                  width: screenWidth * 0.42,
+                  width: screenWidth * 0.40,
                   padding: const EdgeInsets.symmetric(horizontal: 5,vertical: 5),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('lib/imagenes/incrementar.png',height: 45,),
+                      Image.asset('lib/imagenes/incrementar.png',height: 40,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const Text(
-                            'CRÉDITOS',
-                            style: TextStyle(color: Colors.black, fontSize: 13),
+                            'Créditos',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           SizedBox(height: 5),
                           Text(
@@ -208,13 +222,13 @@ class _PortadaState extends State<Portada> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Image.asset('lib/imagenes/disminuir2.png',height: 45,),
+                      Image.asset('lib/imagenes/disminuir2.png',height: 40,),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           const Text(
-                            'DÉDITOS',
-                            style: TextStyle(color: Colors.black, fontSize: 13),
+                            'Débitos',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
                           ),
                           SizedBox(height: 5),
                           Text(

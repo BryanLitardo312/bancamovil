@@ -34,7 +34,7 @@ class ButtonLogin extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                Icon(icon, color: Colors.white,size:20),
+                Icon(icon, color: Colors.white,size:25),
               ],
             ),
         ),

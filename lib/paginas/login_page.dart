@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
               //SizedBox(height: screenHeight*0.31),
               //const SizedBox(height: 60),
               Image.asset('lib/imagenes/logo-primax.png', width: screenWidth*0.65),
-              const SizedBox(height: 50),
+              const SizedBox(height: 70),
               //const Text('Bienvenido', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
               Textfield(
                 controller: emailcontroller,
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: _obscureText,
                 hintText: 'Contraseña',
               ),
-              const SizedBox(height: 10),
+              //const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 40.0),
                 child: Row(
