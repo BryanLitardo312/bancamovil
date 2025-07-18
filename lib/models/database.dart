@@ -68,6 +68,11 @@ class SuministrosBanco {
     await database.insert([form.toMap()]).select();
   }
 
+  Future<void> updateForm(Suministros form) async {
+    await database.update(form.toMap()).eq('id', form.id!);
+  }
+
+
   final stream = Supabase.instance.client.from('Suministros').stream(
     primaryKey: ['requests']
     ).map((data) => data.map((e) => Forms.fromMap(e)).toList());

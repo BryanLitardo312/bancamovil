@@ -1,3 +1,4 @@
+import 'package:bancamovil/models/suministros.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 //import 'package:bancamovil/componentes/drawer.dart';
@@ -5,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:bancamovil/paginas/provider.dart';
 import 'package:bancamovil/models/database.dart';
 import 'package:bancamovil/models/quejas.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DetalleSuministroScreen extends StatefulWidget {
   final Map<String, dynamic> solicitud;
@@ -17,20 +19,22 @@ class DetalleSuministroScreen extends StatefulWidget {
 
 }
 class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
-  late TextEditingController _nombreController;
-  late TextEditingController _apellidoController;
+  late TextEditingController _quejaController;
+  late TextEditingController _rechazoController;
+  final novedadesBanco = SuministrosBanco();
   final quejasBanco = QuejasBanco();
+  
   
   void initState() {
     super.initState();
     //final value = Provider.of<Datamodel>(context, listen: false);
-    _nombreController = TextEditingController();
-    _apellidoController = TextEditingController();// Inicializa con el valor de la base de datos
+    _quejaController = TextEditingController();
+    _rechazoController = TextEditingController();// Inicializa con el valor de la base de datos
   }
 
   void dispose() {
-    _nombreController.clear();
-    _apellidoController.clear(); // Limpia el controlador al salir
+    _quejaController.clear();
+    _rechazoController.clear(); // Limpia el controlador al salir
     super.dispose();
   }
 
@@ -69,6 +73,113 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                   TextField(
                     maxLength: 100,
                     style: TextStyle(color: Colors.white, fontSize: 16),
+                    controller: _quejaController,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      counterStyle: TextStyle(color: Colors.white),
+                      //contentPadding: EdgeInsets.symmetric(vertical: 8),
+                      //labelText: 'Comentarios',
+                      hintText: 'Escribe un comentario..',
+                      //labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
+                      hintStyle: TextStyle(color: Colors.white,fontSize: 16),
+                    ),
+                    maxLines: 1,
+                  ),
+              ],
+            ),
+          ),
+        
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _quejaController.clear();
+            },
+            child: const Text(
+              'Cancelar',
+              style:TextStyle(
+                fontSize: 19,
+                color:Colors.white,
+                )
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                final newNote = BancoQuejas(
+                  //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
+                  bodega: item['bodega'],
+                  estacion: item['estacion'],
+                  proceso: 'Suministros',
+                  detalle: item['detalle'],
+                  salida: item['created_at'],
+                  observacion: _quejaController.text.toString(),
+                );
+                try {
+                  //print('Datos a enviar: ${item['NOMBRE']}');
+                  await quejasBanco.createForm(newNote);
+                  Navigator.pop(context);
+                  //valor.noteController.clear();
+                  _quejaController.clear();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Notificación enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
+                  );
+                  //noteController.clear();
+                } catch (e) {
+                  // Maneja el error si es necesario
+                  //print('Error al crear el formulario: $e');
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Error al enviar la solicitud: $e')),
+                  );
+                }
+              },
+              child: const Text(
+                'Notificar',
+                style:TextStyle(
+                  fontSize: 19,
+                  color:Colors.white,
+                  )
+                ),
+            ),
+        ],
+      ),   
+    );
+  }
+
+  void _submitRechazo(Map<String, dynamic> item) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    //final double screenHeight = MediaQuery.of(context).size.height;
+    final valor = Provider.of<Datamodel>(context, listen: false);
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: Colors.blueGrey[900],
+        insetPadding: EdgeInsets.symmetric(vertical: 10),
+        title: const Text(
+          'Notificación',
+          style: TextStyle(color: Colors.white)
+          ),
+        content: ConstrainedBox(
+            constraints: BoxConstraints(
+            maxWidth: screenWidth*0.70,
+            minWidth: screenWidth*0.70,
+            maxHeight: 110,
+            minHeight: 110,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '¿Los soportes recibidos son incongruentes?',
+                  style:TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,)
+                  ),
+                  SizedBox(height: 15),
+                  TextField(
+                    maxLength: 100,
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                     controller: valor.noteController,
                     decoration: InputDecoration(
                       isDense: true,
@@ -89,7 +200,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              valor.noteController.clear();
+              _rechazoController.clear();
             },
             child: const Text(
               'Cancelar',
@@ -101,20 +212,15 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             ),
             TextButton(
               onPressed: () async {
-                final newNote = BancoQuejas(
+                final newNote = Suministros(
                   //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
-                  bodega: item['bodega'],
-                  estacion: item['estacion'],
-                  proceso: 'Suministros',
-                  detalle: item['detalle'],
-                  salida: item['created_at'],
-                  observacion: valor.noteController.text.toString(),
+                  COMENTARIO_RECHAZO: _rechazoController.toString(),
                 );
                 try {
                   //print('Datos a enviar: ${item['NOMBRE']}');
-                  await quejasBanco.createForm(newNote);
+                  await novedadesBanco.createForm(newNote);
                   Navigator.pop(context);
-                  valor.noteController.clear();
+                  _rechazoController.clear();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Notificación enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
                   );
@@ -254,24 +360,30 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                 children: [
                   SizedBox(
                     width:screenWidth*0.80,
-                    //padding: const EdgeInsets.symmetric(horizontal: 50),
-                    child: TextField(
-                      //controller: _nombreController,
-                      decoration: InputDecoration(
-                        labelText: 'Comentarios',
-                        labelStyle: const TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Colors.grey[800],
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(color: Color.fromARGB(255, 40, 125, 43)),
+                    height:50,
+                    child: ElevatedButton.icon(
+                      onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Archivo disponible en: ${widget.solicitud['URL_PUBLICA']}'),
+                          duration: const Duration(seconds: 5),
+                          action: SnackBarAction(
+                            label: 'Abrir',
+                            onPressed: () {
+                              // Usar el paquete `url_launcher` para abrir en el navegador
+                              launchUrl(Uri.parse(widget.solicitud['URL_PUBLICA']));
+                            },
+                          ),
                         ),
                       ),
-                      style: const TextStyle(color: Colors.white),
+                      icon: const Icon(Icons.email_rounded,size:20),
+                      label: const Text('Descarga online',style:TextStyle(fontSize: 17,color:Colors.white)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromARGB(255, 42, 147, 45),
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -280,7 +392,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                     height:50,
                     child: ElevatedButton.icon(
                       onPressed: () => value.tipo == 'usuario'
-                        ? _submitForm(widget.solicitud)
+                        ? _submitRechazo(widget.solicitud)
                         : ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(

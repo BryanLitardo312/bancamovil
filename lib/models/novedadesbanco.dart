@@ -12,6 +12,11 @@ class BancoNovedades {
   final String DESCRIPCION;
   final String EESS;
   final String BODEGA;
+  final String? URL_PUBLICA;
+  final String? COMENTARIOS;
+  final String? USUARIO;
+  final String? STATUS;
+  final String? COMENTARIO_RECHAZO;
 
 
   BancoNovedades({
@@ -27,6 +32,11 @@ class BancoNovedades {
     required this.DESCRIPCION,
     required this.EESS,
     required this.BODEGA,
+    this.URL_PUBLICA,
+    this.COMENTARIOS,
+    this.USUARIO,
+    this.STATUS,
+    this.COMENTARIO_RECHAZO,
   });
   factory BancoNovedades.fromMap(Map<String, dynamic> map) {
     return BancoNovedades(
@@ -42,6 +52,11 @@ class BancoNovedades {
       DESCRIPCION: map['DESCRIPCION'] as String,
       EESS: map['EESS'] as String,
       BODEGA: map['BODEGA'] as String,
+      URL_PUBLICA: map['URL_PUBLICA'] as String,
+      COMENTARIOS: map['COMENTARIOS'] as String,
+      USUARIO: map['USUARIO'] as String,
+      STATUS: map['STATUS'] as String,
+      COMENTARIO_RECHAZO: map['COMENTARIO_RECHAZO'] as String,
     );
   }
   Map <String, dynamic> toMap() {
@@ -58,6 +73,11 @@ class BancoNovedades {
       'DESCRIPCION': DESCRIPCION,
       'EESS': EESS,
       'BODEGA': BODEGA,
+      'URL_PUBLICA': URL_PUBLICA,
+      'COMENTARIOS': COMENTARIOS,
+      'USUARIO': USUARIO,
+      'STATUS': STATUS,
+      'COMENTARIO_RECHAZO': COMENTARIO_RECHAZO,
     };
   }
 }

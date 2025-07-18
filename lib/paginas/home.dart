@@ -88,7 +88,7 @@ class _PortadaState extends State<Portada> {
       ),
       body:
       value.isLoading ? const Center(
-        child: CircularProgressIndicator(color: Colors.blue),
+        child: CircularProgressIndicator(color: Colors.black),
         ) : Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
