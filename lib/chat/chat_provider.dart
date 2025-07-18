@@ -1,9 +1,10 @@
 import 'package:bancamovil/chat/claude_api_service.dart';
 import 'package:bancamovil/chat/messages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ChatProvider with ChangeNotifier {
-  final _apiService = ClaudeApiService(apiKey:'ANTHROPIC_API_KEY');
+  final _apiService = ClaudeApiService(apiKey:dotenv.get('ANTHROPIC_API_KEY'));
   final List<Message> _messages = [];
   bool _isLoading = false;
 

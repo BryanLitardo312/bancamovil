@@ -1,3 +1,4 @@
+import 'package:bancamovil/chat/bubble.dart';
 import 'package:bancamovil/chat/chat_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,12 +33,20 @@ class _ChatPageState extends State<ChatPage>{
                   itemCount: chatProvider.messages.length,
                   itemBuilder: (context,index){
                     final message = chatProvider.messages[index];
-                    return Text(message.content);
+                    return ChatBubble(message:message);
                   },
                 );
               },
             ),
             ),
+            Consumer<ChatProvider>(
+              builder:(context,chatProvider,child){
+                if (chatProvider.isLoading){
+                  return const CircularProgressIndicator();
+                }
+                return const SizedBox();
+              }
+              ),
             Row(
               children:[
                 Expanded(
