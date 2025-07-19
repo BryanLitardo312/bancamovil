@@ -21,7 +21,7 @@ class DetalleSuministroScreen extends StatefulWidget {
 class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
   late TextEditingController _quejaController;
   late TextEditingController _rechazoController;
-  final novedadesBanco = SuministrosBanco();
+  final suministrosBanco = SuministrosBanco();
   final quejasBanco = QuejasBanco();
   
   
@@ -41,7 +41,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
   void _submitForm(Map<String, dynamic> item) {
     final double screenWidth = MediaQuery.of(context).size.width;
     //final double screenHeight = MediaQuery.of(context).size.height;
-    final valor = Provider.of<Datamodel>(context, listen: false);
+    //final valor = Provider.of<Datamodel>(context, listen: false);
 
     showDialog(
       context: context,
@@ -56,7 +56,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             constraints: BoxConstraints(
             maxWidth: screenWidth*0.70,
             minWidth: screenWidth*0.70,
-            maxHeight: 110,
+            //maxHeight: 110,
             minHeight: 110,
             ),
             child: Column(
@@ -163,7 +163,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             constraints: BoxConstraints(
             maxWidth: screenWidth*0.70,
             minWidth: screenWidth*0.70,
-            maxHeight: 110,
+            //maxHeight: 110,
             minHeight: 110,
             ),
             child: Column(
@@ -214,11 +214,12 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
               onPressed: () async {
                 final newNote = Suministros(
                   //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
+                  requests: item['requests'],
                   COMENTARIO_RECHAZO: _rechazoController.toString(),
                 );
                 try {
                   //print('Datos a enviar: ${item['NOMBRE']}');
-                  await novedadesBanco.createForm(newNote);
+                  await suministrosBanco.updateForm(newNote);
                   Navigator.pop(context);
                   _rechazoController.clear();
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -402,9 +403,9 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                             ),
                           ),
                       icon: const Icon(Icons.email_rounded,size:20),
-                      label: const Text('Enviar',style:TextStyle(fontSize: 17,color:Colors.white)),
+                      label: const Text('Reportar',style:TextStyle(fontSize: 17,color:Colors.white)),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 42, 147, 45),
+                        backgroundColor: const Color.fromARGB(255, 233, 39, 26),
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
