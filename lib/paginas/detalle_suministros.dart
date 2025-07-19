@@ -19,8 +19,8 @@ class DetalleSuministroScreen extends StatefulWidget {
 
 }
 class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
-  late TextEditingController _quejaController;
-  late TextEditingController _rechazoController;
+  //late TextEditingController _quejaController;
+  //late TextEditingController _rechazoController;
   final suministrosBanco = SuministrosBanco();
   final quejasBanco = QuejasBanco();
   
@@ -28,20 +28,20 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
   void initState() {
     super.initState();
     //final value = Provider.of<Datamodel>(context, listen: false);
-    _quejaController = TextEditingController();
-    _rechazoController = TextEditingController();// Inicializa con el valor de la base de datos
+    //_quejaController = TextEditingController();
+    //_rechazoController = TextEditingController();// Inicializa con el valor de la base de datos
   }
 
   void dispose() {
-    _quejaController.clear();
-    _rechazoController.clear(); // Limpia el controlador al salir
+    //_quejaController.clear();
+    //_rechazoController.clear(); // Limpia el controlador al salir
     super.dispose();
   }
 
   void _submitForm(Map<String, dynamic> item) {
     final double screenWidth = MediaQuery.of(context).size.width;
     //final double screenHeight = MediaQuery.of(context).size.height;
-    //final valor = Provider.of<Datamodel>(context, listen: false);
+    final valor = Provider.of<Datamodel>(context, listen: false);
 
     showDialog(
       context: context,
@@ -57,7 +57,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             maxWidth: screenWidth*0.70,
             minWidth: screenWidth*0.70,
             //maxHeight: 110,
-            minHeight: 110,
+            //minHeight: 110,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -73,7 +73,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                   TextField(
                     maxLength: 100,
                     style: TextStyle(color: Colors.white, fontSize: 16),
-                    controller: _quejaController,
+                    controller: valor.noteController,
                     decoration: InputDecoration(
                       isDense: true,
                       counterStyle: TextStyle(color: Colors.white),
@@ -93,7 +93,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              _quejaController.clear();
+              valor.noteController.clear();
             },
             child: const Text(
               'Cancelar',
@@ -112,14 +112,14 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                   proceso: 'Suministros',
                   detalle: item['detalle'],
                   salida: item['created_at'],
-                  observacion: _quejaController.text.toString(),
+                  observacion: valor.noteController.text.toString(),
                 );
                 try {
                   //print('Datos a enviar: ${item['NOMBRE']}');
                   await quejasBanco.createForm(newNote);
                   Navigator.pop(context);
                   //valor.noteController.clear();
-                  _quejaController.clear();
+                  valor.noteController.clear();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Notificación enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
                   );
@@ -200,7 +200,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              _rechazoController.clear();
+              valor.noteController.clear();
             },
             child: const Text(
               'Cancelar',
@@ -215,13 +215,14 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                 final newNote = Suministros(
                   //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
                   requests: item['requests'],
-                  COMENTARIO_RECHAZO: _rechazoController.toString(),
+                  COMENTARIO_RECHAZO: valor.noteController.text.toString(),
+                  STATUS: 'Rechazado'
                 );
                 try {
                   //print('Datos a enviar: ${item['NOMBRE']}');
                   await suministrosBanco.updateForm(newNote);
                   Navigator.pop(context);
-                  _rechazoController.clear();
+                  valor.noteController.clear();
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Notificación enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
                   );

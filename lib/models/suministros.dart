@@ -1,6 +1,6 @@
 
 class Suministros {
-  final int? requests;
+  final int requests;
   final String? bodega;
   final String? estacion;
   final String? detalle;
@@ -11,7 +11,7 @@ class Suministros {
   final String? COMENTARIO_RECHAZO;
 
   Suministros({
-    this.requests,
+    required this.requests,
     this.bodega,
     this.estacion,
     this.detalle,
@@ -23,7 +23,7 @@ class Suministros {
   });
   factory Suministros.fromMap(Map<String, dynamic> map) {
     return Suministros(
-      requests: map['requests'] as int?,
+      requests: map['requests'] as int,
       bodega: map['bodega'] as String,
       estacion: map['estacion'] as String,
       detalle: map['detalle'] as String,
@@ -36,7 +36,7 @@ class Suministros {
   }
   Map <String, dynamic> toMap() {
     return {
-      'id':requests,
+      //'requests':requests,
       'bodega': bodega,
       'estacion': estacion,
       'detalle': detalle,

@@ -69,10 +69,11 @@ class SuministrosBanco {
   }
 
   Future<void> updateForm(Suministros form) async {
-    if (form.requests == null) {
-      throw ArgumentError('ID no puede ser nulo para actualizar');
-    }
-    await database.update(form.toMap()).eq('id', form.requests!);
+    final dataToUpsert = {
+    'COMENTARIO_RECHAZO': form.COMENTARIO_RECHAZO,
+    'STATUS':form.STATUS,
+    }..removeWhere((key, value) => value == null);
+    await database.update(dataToUpsert).eq('requests', form.requests).select();
   }
 
 

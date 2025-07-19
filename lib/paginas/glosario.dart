@@ -73,7 +73,9 @@ class _GlosarioState extends State<Glosario> {
                   //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
                   bodega: valor.bodegaEstacion.toString(), // Proporciona un valor adecuado
                   estacion: valor.nombreEstacion.toString(), // Proporciona un valor adecuado
-                  detalle: titles.toString(), //noteController.text,
+                  detalle: titles.toString(),
+                  STATUS: 'Pendiente',
+                  requests: 0,
                 );
                 try {
                   print('Datos a enviar: ${seleccionados[0]['title']}');
