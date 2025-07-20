@@ -122,7 +122,7 @@ class TextfieldPerfil extends StatelessWidget{
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.grey[600],
+            color: Colors.grey[700],
             fontWeight: FontWeight.bold,
             overflow: TextOverflow.ellipsis,
           ),

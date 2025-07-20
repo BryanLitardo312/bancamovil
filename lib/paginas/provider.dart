@@ -43,7 +43,7 @@ class Datamodel extends ChangeNotifier {
   List<String> opcionesGenero = ['Masculino', 'Femenino'];
   List<String> opcionesCargo = ['Gerente', 'Soporte'];
   bool isLoading = false;
-
+  bool isActive = false;
 
   void clearData() {
     userId = null;
@@ -62,6 +62,11 @@ class Datamodel extends ChangeNotifier {
       genero_list = nuevoGenero;
       notifyListeners();
     }
+  }
+
+  void cambiarswitch(bool nuevovalor) {
+    isActive = nuevovalor;
+    notifyListeners();
   }
 
   Future<void> actualizarNombreUsuario(String nuevoNombre,String nuevoApellido) async {
@@ -254,10 +259,10 @@ class Datamodel extends ChangeNotifier {
       tipo=typeResponse['User'];
       if (tipo == 'usuario') {
         final userResponse = await supabase
-            .from('Directorio')
-            .select("BOD")
-            .eq("Correo EDS", correoInicio)
-            .single();
+        .from('Directorio')
+        .select("BOD")
+        .eq("Correo EDS", correoInicio)
+        .single();
         bodegaEstacion = userResponse['BOD'];
 
         final userName = await supabase
