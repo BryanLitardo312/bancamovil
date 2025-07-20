@@ -116,21 +116,23 @@ class TextfieldPerfil extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 45,
-      child: TextField(
+    return TextField(
         controller: controller,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.grey[900],
+            color: Colors.grey[600],
+            fontWeight: FontWeight.bold,
             overflow: TextOverflow.ellipsis,
           ),
-          fillColor: Colors.grey[200],
-          suffixIcon: Icon(icon),
+          fillColor: Colors.white,
+          filled:true,
+          prefixIcon: Icon(icon),
+          enabledBorder: InputBorder.none,    // Elimina borde cuando no está enfocado
+          focusedBorder: InputBorder.none,    // Elimina borde cuando está enfocado
+          //contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 2),
         ),
-      ),
-    );
+      );
   }
 }

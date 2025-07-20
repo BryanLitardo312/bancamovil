@@ -1,3 +1,4 @@
+import 'package:bancamovil/componentes/dropdown.dart';
 import 'package:bancamovil/componentes/textfield.dart';
 import 'package:flutter/material.dart';
 //import 'package:supabase_flutter/supabase_flutter.dart';
@@ -70,7 +71,7 @@ class _PerfilPageState extends State<PerfilPage> {
     //final double screenHeight = MediaQuery.of(context).size.height;
     return Consumer<Datamodel>(
       builder:(context,value,child)=> Scaffold(
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.grey[200],
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text('Actualización',style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold,color: Colors.black),),
@@ -106,63 +107,15 @@ class _PerfilPageState extends State<PerfilPage> {
                 ),
                 const SizedBox(height: 30),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: [
-                      TextfieldPerfil(controller: _nombreController, hintText: 'Nombres', icon: Icons.abc),
+                      TextfieldPerfil(controller: _nombreController, hintText: 'Nombre', icon: Icons.person),
+                      TextfieldPerfil(controller: _apellidoController, hintText: 'Apellido Paterno', icon: Icons.person),
+                      //const SizedBox(height: 30),
+                      DropDawnGenero(),
+                      DropDawnCargo(),
                       const SizedBox(height: 30),
-                      TextField(
-                        controller: _apellidoController,
-                        decoration: InputDecoration(
-                          labelText: 'Apellidos',
-                          labelStyle: const TextStyle(color: Colors.white),
-                          filled: true,
-                          fillColor: Colors.grey[800],
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.white),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: const BorderSide(color: Colors.green),
-                          ),
-                        
-                        ),
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: DropdownButtonFormField<String>(
-                              isExpanded: true,
-                              dropdownColor: Colors.grey[800],
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(color: Colors.white),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                //borderSide: const BorderSide(color: Colors.white),
-                                ),
-                                filled: true,
-                                fillColor: Colors.grey[800],
-                                //prefixIcon: Icon(Icons.gender, color: Colors.white),
-                              ),
-                              icon: Icon(Icons.arrow_drop_down, color: Colors.white),
-                              style: TextStyle(color: Colors.white,fontSize: 16),
-                              value: value.genero_list,
-                              items: value.opcionesGenero.map((genero) {
-                                return DropdownMenuItem(
-                                  value: genero,
-                                  child: Text(genero),
-                                );
-                              }).toList(),
-                              onChanged: value.cambiarGenero,
-                            ),
-                          ),
-                        ],
-                      ),
                       Row(
                         children: [
                           Expanded(

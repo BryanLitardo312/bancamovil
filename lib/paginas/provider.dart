@@ -39,8 +39,9 @@ class Datamodel extends ChangeNotifier {
   final TextEditingController noteController = TextEditingController();
   String? userId;
   Map<String, dynamic> userData = {};
-  String genero_list = 'Masculino';
+  String? genero_list;
   List<String> opcionesGenero = ['Masculino', 'Femenino'];
+  List<String> opcionesCargo = ['Gerente', 'Soporte'];
   bool isLoading = false;
 
 
@@ -112,12 +113,12 @@ class Datamodel extends ChangeNotifier {
 
     } if (tipo=='admin' || tipo=='coordinador') {
 
-      final id_gerencial = await supabase
+      final idGerencial = await supabase
         .from('Directorio')
         .select("ID_user")
         .eq("Correo EDS", correoInicio)
         .single();
-      final idgerencial=id_gerencial['ID_user'];
+      final idgerencial=idGerencial['ID_user'];
       
       await supabase
         .from('ContactosTM')
