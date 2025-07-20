@@ -140,8 +140,6 @@ class _LoginPageState extends State<LoginPage> {
               Textfield(
                 controller: emailcontroller,
                 hintText: 'Correo electrónico',
-                obscureText: false,
-                suffixIcon: const Icon(Icons.email_outlined),
               ),
               const SizedBox(height: 20),
               Textfield2(

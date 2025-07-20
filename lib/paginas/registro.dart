@@ -61,21 +61,16 @@ class _RegistroPageState extends State<RegistroPage> {
             Textfield(
               controller: emailcontroller,
               hintText: 'Correo electrónico *',
-              obscureText: false,
-              suffixIcon: const Icon(Icons.email_outlined),
             ),
             //const SizedBox(height: 10),
             Textfield(
               controller: passwordcontroller,
               hintText: 'Contraseña *',
-              obscureText: true,
-              suffixIcon: const Icon(Icons.lock_open_rounded),
+    
             ),
             Textfield(
               controller: confirmpasswordcontroller,
               hintText: 'Confirmar contraseña *',
-              obscureText: true,
-              suffixIcon: const Icon(Icons.lock_open_rounded),
             ),
             const SizedBox(height: 10),
             ButtonLogin(

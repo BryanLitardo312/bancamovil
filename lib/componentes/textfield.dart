@@ -3,20 +3,18 @@ import 'package:flutter/material.dart';
 class Textfield extends StatelessWidget{
   final TextEditingController controller;
   final String hintText;
-  final bool obscureText;
-  final Icon? suffixIcon;
+
   
-  const Textfield({super.key, required this.controller, required this.hintText, required this.obscureText,required this.suffixIcon,});
+  const Textfield({super.key, required this.controller, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
-      child: Container(
+      child: SizedBox(
         height: 45,
         child: TextField(
           controller: controller,
-          //obscureText: obscureText,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
@@ -33,8 +31,7 @@ class Textfield extends StatelessWidget{
               color: Colors.grey[900],
               overflow: TextOverflow.ellipsis,
             ),
-            suffixIcon: suffixIcon,
-            //border: InputBorder.none,
+            suffixIcon: Icon(Icons.email_outlined),
           ),
         ),
       ),
@@ -72,7 +69,7 @@ class _Textfield2State extends State<Textfield2> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
-      child: Container(
+      child: SizedBox(
         height: 45,
         child: TextField(
           controller: widget.controller,
@@ -101,6 +98,37 @@ class _Textfield2State extends State<Textfield2> {
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class TextfieldPerfil extends StatelessWidget{
+  final TextEditingController controller;
+  final String hintText;
+  final IconData icon;
+
+  
+  const TextfieldPerfil({super.key, required this.controller, required this.hintText, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 45,
+      child: TextField(
+        controller: controller,
+        keyboardType: TextInputType.text,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: TextStyle(
+            color: Colors.grey[900],
+            overflow: TextOverflow.ellipsis,
+          ),
+          fillColor: Colors.grey[200],
+          suffixIcon: Icon(icon),
         ),
       ),
     );
