@@ -29,9 +29,10 @@ class MyTabBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         color: Colors.grey[300], // Color de fondo del tab seleccionado
       ),*/
+      indicatorPadding: EdgeInsets.symmetric(horizontal: 0.1),
       dividerColor: Colors.grey[200],
       indicatorColor: Colors.blue,
-      indicatorWeight:4.0,
+      indicatorWeight:5.0,
       labelStyle: const TextStyle(
         fontSize: 16,
         //fontWeight: FontWeight.bold,

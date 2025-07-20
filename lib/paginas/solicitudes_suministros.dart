@@ -84,7 +84,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                           color: Colors.black, // Color del borde
                           width: 1.0, // Grosor del borde
                         ),
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -107,12 +107,12 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                     value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
                                     //Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,),
                                     Text(
-                                      'MATERIALES: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
                                     Text(
-                                      'FECHA: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                      'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
@@ -191,7 +191,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                           color: Colors.black, // Color del borde
                           width: 1.0, // Grosor del borde
                         ),
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -213,12 +213,12 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                     const SizedBox(height: 5),
                                     value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
                                     Text(
-                                      'DETALLE: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      'Detalle: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.clip,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      'FECHA: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                      'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
@@ -296,7 +296,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                           color: Colors.black, // Color del borde
                           width: 1.0, // Grosor del borde
                         ),
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
@@ -318,12 +318,12 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                     const SizedBox(height: 5),
                                     value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
                                     Text(
-                                      'DETALLE: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
+                                      'Detalle: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.clip,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
-                                      'FECHA: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
+                                      'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
                                       overflow: TextOverflow.clip,
                                     ),
@@ -359,7 +359,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double imageHeight = screenHeight * 0.35;
+    final double imageHeight = screenHeight * 0.30;
 
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(

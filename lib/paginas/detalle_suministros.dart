@@ -272,8 +272,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
           ),
         ),
       ),
-      body:SingleChildScrollView(
-          child: Padding(
+      body:Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -369,85 +368,49 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 25),
-                //const SizedBox(height: 50),
+                const SizedBox(height: 10),
                 widget.solicitud['URL_PUBLICA'] == null ? 
-                SizedBox(
-                  width:screenWidth,
-                  height:50,
-                  child: ElevatedButton.icon(
-                    onPressed: () => value.tipo == 'usuario'
-                      ? _submitForm(widget.solicitud)
-                      : ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              'Servicio no disponible',
-                              style: TextStyle(fontSize: 18),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width:screenWidth,
+                        height:50,
+                        child: ElevatedButton.icon(
+                          onPressed: () => value.tipo == 'usuario'
+                            ? _submitForm(widget.solicitud)
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Servicio no disponible',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ),
+                              ),
+                          icon: const Icon(Icons.notifications_active,size:20),
+                          label: const Text('Notificar demora',style:TextStyle(fontSize: 17,color:Colors.white)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 233, 39, 26),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
                           ),
                         ),
-                    icon: const Icon(Icons.notifications_active,size:20),
-                    label: const Text('Notificar demora',style:TextStyle(fontSize: 17,color:Colors.white)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 233, 39, 26),
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
                       ),
-                    ),
+                    ],
                   ),
-                ) : Column(
-                  children: [
-                    InkWell(
-                      onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          //content: Text('Archivo disponible en: ${widget.solicitud['URL_PUBLICA']}'),
-                          content: Text('Por motivo de seguridad, el archivo se descargará directamente desde la nube..'),
-                          duration: const Duration(seconds: 8),
-                          action: SnackBarAction(
-                            label: 'Abrir',
-                            onPressed: () {
-                              // Usar el paquete `url_launcher` para abrir en el navegador
-                              launchUrl(Uri.parse(widget.solicitud['URL_PUBLICA']));
-                            },
-                          ),
-                        ),
-                      ),
-                      splashColor: Colors.grey.withOpacity(0.9), // Color del efecto
-                      borderRadius: BorderRadius.circular(4), // Bordes redondeados del efecto
-                      child: Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Para descargar los soportes, ',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                            Text(
-                              'click aquí',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                overflow: TextOverflow.clip,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    /*SizedBox(
-                      width:screenWidth,
-                      height:50,
-                      child: ElevatedButton.icon(
-                        onPressed: () => ScaffoldMessenger.of(context).showSnackBar(
+                ) : Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () => ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('Archivo disponible en: ${widget.solicitud['URL_PUBLICA']}'),
-                            duration: const Duration(seconds: 5),
+                            //content: Text('Archivo disponible en: ${widget.solicitud['URL_PUBLICA']}'),
+                            content: Text('Por motivo de seguridad, el archivo se descargará directamente desde la nube..'),
+                            duration: const Duration(seconds: 8),
                             action: SnackBarAction(
                               label: 'Abrir',
                               onPressed: () {
@@ -457,50 +420,66 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                             ),
                           ),
                         ),
-                        icon: const Icon(Icons.email_rounded,size:20),
-                        label: const Text('Descarga online',style:TextStyle(fontSize: 17,color:Colors.white)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 42, 147, 45),
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    ),*/
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width:screenWidth,
-                      height:50,
-                      child: ElevatedButton.icon(
-                        onPressed: () => value.tipo == 'usuario'
-                          ? _submitRechazo(widget.solicitud)
-                          : ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'Servicio no disponible',
-                                  style: TextStyle(fontSize: 18),
+                        splashColor: Colors.grey.withOpacity(0.9), // Color del efecto
+                        borderRadius: BorderRadius.circular(4), // Bordes redondeados del efecto
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Para descargar los soportes, ',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  overflow: TextOverflow.clip,
                                 ),
                               ),
-                            ),
-                        icon: const Icon(Icons.email_rounded,size:20),
-                        label: const Text('Rechazar soportes',style:TextStyle(fontSize: 17,color:Colors.white)),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color.fromARGB(255, 233, 39, 26),
-                          foregroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
+                              Text(
+                                'click aquí',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.clip,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      //const SizedBox(height: 20),
+                      SizedBox(
+                        width:screenWidth,
+                        height:50,
+                        child: ElevatedButton.icon(
+                          onPressed: () => value.tipo == 'usuario'
+                            ? _submitRechazo(widget.solicitud)
+                            : ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Servicio no disponible',
+                                    style: TextStyle(fontSize: 18),
+                                  ),
+                                ),
+                              ),
+                          icon: const Icon(Icons.stop_circle,size:20),
+                          label: const Text('Rechazar soportes',style:TextStyle(fontSize: 17,color:Colors.white)),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color.fromARGB(255, 233, 39, 26),
+                            foregroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
               ],
             ),
           ),
-      ),
     ),
     );
   }
