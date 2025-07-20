@@ -134,7 +134,7 @@ class _BusquedaState extends State<Busqueda> {
           TextButton(
             onPressed: () async {
               final newNote = BancoNovedades(
-                //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
+                id: 1, // O proporciona un ID si es necesario
                 No: item['No'],
                 FECHA: item['FECHA'],
                 REF: item['REF'],
@@ -210,7 +210,7 @@ class _BusquedaState extends State<Busqueda> {
           TextButton(
             onPressed: () async {
               final newNote = BancoDevoluciones(
-                //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
+                id: 1, // O proporciona un ID si es necesario
                 No: item['No'],
                 FECHA: item['FECHA'],
                 REF: item['REF'],

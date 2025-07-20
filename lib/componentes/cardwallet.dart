@@ -15,10 +15,19 @@ class card_wallet extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 20,right: 20,top: 20),
       padding: const EdgeInsets.all(10),
-      height: screenHeight * 0.25,
+      height: screenHeight * 0.28,
       //width: 350,
       decoration: BoxDecoration(
-        color: Colors.grey[900],
+        //color: Colors.grey[900],
+        gradient: LinearGradient(
+          colors: [
+            Colors.grey[800]!, // Gris claro
+            Colors.black, // Gris medio
+          ],
+          stops: [0.0, 0.5],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -29,31 +38,34 @@ class card_wallet extends StatelessWidget {
           ),
         ],
       ),
-      child:Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset('lib/imagenes/VISA-logo.png',height: 50,color:Colors.white),
-              //SizedBox(height: screenHeight * 0.05),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('**** **** **** 4556 ',style: TextStyle(color: Colors.white,fontSize: 21),),
-                  SizedBox(height: 10),
-              Text('\$${double.parse(wallet.monto.toStringAsFixed(2))}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 25),),
-                ],
-              ),
-            ],
-          ),
-          const Column(
-            children: [
-              Icon(Icons.memory, color: Colors.white,size: 45,),
-            ],
-          ),
-        ],
+      child:Padding(
+        padding: const EdgeInsets.symmetric(vertical:5,horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset('lib/imagenes/VISA-logo.png',height: 50,color:Colors.white),
+                //SizedBox(height: screenHeight * 0.05),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('**** **** **** 4556 ',style: TextStyle(color: Colors.white,fontSize: 21,overflow: TextOverflow.ellipsis),),
+                    SizedBox(height: 10),
+                Text('\$${double.parse(wallet.monto.toStringAsFixed(2))}',style: const TextStyle(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 26,overflow: TextOverflow.ellipsis),),
+                  ],
+                ),
+              ],
+            ),
+            const Column(
+              children: [
+                Icon(Icons.keyboard_double_arrow_right_rounded, color: Colors.white,size: 45,),
+              ],
+            ),
+          ],
+        ),
       )
     );
   }

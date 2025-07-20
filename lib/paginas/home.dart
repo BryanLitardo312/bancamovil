@@ -121,27 +121,21 @@ class _PortadaState extends State<Portada> {
                           Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
                         ],
                       ),
-                      InkWell(
-                        onTap: () {
+                      /*ElevatedButton.icon(
+                        onPressed: () {
                           Navigator.popAndPushNamed(context, '/chat');
                         },
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.forum_sharp, size: 30, color: Colors.grey[900]),
-                          ],
+                        //icon: Icon(Icons.forum),  // Icono de foro/material
+                        label: Icon(Icons.forum,size:25),
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white, 
+                          backgroundColor: Colors.grey[800], // Color de fondo
+                          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10), // Espaciado interno
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50), // Bordes redondeados
+                          ),
                         ),
-                      ),
-                      //value.correoInicio == 'brodriguezl@atimasa.com.ec' ? 
-                      /*value.tipo == 'admin' ?
-                  
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:[
-                          ElevatedButton(onPressed: () { NotiService().showNotification(title:'Breaking News',body:'Se actualizó el estado de cuenta.',);}, child: Icon(Icons.update,size:30,color:Colors.black)),
-                        ],
-                      ) : SizedBox.shrink(),*/
+                      ),*/
                     ],
                   ),
                 ),
@@ -151,9 +145,7 @@ class _PortadaState extends State<Portada> {
           //const SizedBox(height: 5),
           card_wallet(
             wallet: Wallet(
-              
               monto: double.parse(value.sumaAcumulada2.toStringAsFixed(1)) + double.parse(value.restaAcumulada2.toStringAsFixed(1)),
-              //color: Colors.blue,
             ),
           ),
           const SizedBox(height: 30),

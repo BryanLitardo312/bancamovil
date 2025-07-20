@@ -91,7 +91,7 @@ class MyDrawer extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 25.0),
                 child: ListTile(
-                  leading: const Icon(Icons.forum_outlined, color: Colors.white,size:30),
+                  leading: const Icon(Icons.forum, color: Colors.white,size:30),
                   title: const Text('Chat IA', style: TextStyle(color: Colors.white,fontSize: 17)),
                   //selected: _currentIndex == 2,
                   onTap: () {

@@ -42,6 +42,14 @@ class NovedadesBanco {
     await database.insert([form.toMap()]).select();
   }
 
+  Future<void> updateForm(BancoNovedades form) async {
+    final dataToUpsert = {
+    'COMENTARIO_RECHAZO': form.COMENTARIO_RECHAZO,
+    'STATUS':form.STATUS,
+    }..removeWhere((key, value) => value == null);
+    await database.update(dataToUpsert).eq('id', form.id).select();
+  }
+
   final stream = Supabase.instance.client.from('Novedades').stream(
     primaryKey: ['id']
     ).map((data) => data.map((e) => Forms.fromMap(e)).toList());
@@ -53,6 +61,14 @@ class DevolucionesBanco {
 
   Future<void> createForm(BancoDevoluciones form) async {
     await database.insert([form.toMap()]).select();
+  }
+
+  Future<void> updateForm(BancoDevoluciones form) async {
+    final dataToUpsert = {
+    'COMENTARIO_RECHAZO': form.COMENTARIO_RECHAZO,
+    'STATUS':form.STATUS,
+    }..removeWhere((key, value) => value == null);
+    await database.update(dataToUpsert).eq('id', form.id).select();
   }
 
   final stream = Supabase.instance.client.from('Devoluciones').stream(

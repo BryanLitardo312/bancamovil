@@ -1,16 +1,17 @@
+
 class BancoDevoluciones {
-  
-  final int No;
-  final String FECHA;
-  final String REF;
-  final String LUGAR;
-  final String DETALLE;
-  final String SECUENCIAL;
-  final String SIGNO;
-  final double VALOR;
-  final String DESCRIPCION;
-  final String EESS;
-  final String BODEGA;
+  final int id;
+  final int? No;
+  final String? FECHA;
+  final String? REF;
+  final String? LUGAR;
+  final String? DETALLE;
+  final String? SECUENCIAL;
+  final String? SIGNO;
+  final double? VALOR;
+  final String? DESCRIPCION;
+  final String? EESS;
+  final String? BODEGA;
   final String? URL_PUBLICA;
   final String? COMENTARIOS;
   final String? USUARIO;
@@ -19,18 +20,19 @@ class BancoDevoluciones {
 
 
   BancoDevoluciones({
-    
-    required this.No,
-    required this.FECHA,
-    required this.REF,
-    required this.LUGAR,
-    required this.DETALLE,
-    required this.SECUENCIAL,
-    required this.SIGNO,
-    required this.VALOR,
-    required this.DESCRIPCION,
-    required this.EESS,
-    required this.BODEGA,
+
+    required this.id,
+    this.No,
+    this.FECHA,
+    this.REF,
+    this.LUGAR,
+    this.DETALLE,
+    this.SECUENCIAL,
+    this.SIGNO,
+    this.VALOR,
+    this.DESCRIPCION,
+    this.EESS,
+    this.BODEGA,
     this.URL_PUBLICA,
     this.COMENTARIOS,
     this.USUARIO,
@@ -39,7 +41,7 @@ class BancoDevoluciones {
   });
   factory BancoDevoluciones.fromMap(Map<String, dynamic> map) {
     return BancoDevoluciones(
-      
+      id: map['No'] as int,
       No: map['No'] as int,
       FECHA: map['FECHA'] as String,
       REF: map['REF'] as String,
@@ -59,7 +61,7 @@ class BancoDevoluciones {
     );
   }
   Map <String, dynamic> toMap() {
-    return {      
+    return {
       'No': No,
       'FECHA': FECHA,
       'REF': REF,
