@@ -84,12 +84,16 @@ class _ChatPageState extends State<ChatPage>{
                           borderSide: BorderSide(color: Colors.blue, width: 2),
                         ),
                         hintStyle: TextStyle(
-                          color: Colors.grey[500],
+                          color: Colors.grey[300],
                         ),
                       ),
-                      keyboardType: TextInputType.text, // Tipo de teclado
+                      //keyboardType: TextInputType.text,
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.done, // Para mejor manejo de texto
+                      maxLines: null,
+                      //strutStyle: StrutStyle(height: 1.5),
                       //textCapitalization: TextCapitalization.words, // Capitalización
-                      style: TextStyle(fontSize: 15,color:Colors.white,overflow: TextOverflow.ellipsis,), // Estilo del texto
+                      style: TextStyle(fontSize: 16,color:Colors.white,overflow: TextOverflow.ellipsis,), // Estilo del texto
                       textAlign: TextAlign.start, // Alineación del texto
                       //maxLength: 200,
                     ),

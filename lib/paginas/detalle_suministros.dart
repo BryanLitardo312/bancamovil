@@ -19,24 +19,10 @@ class DetalleSuministroScreen extends StatefulWidget {
 
 }
 class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
-  //late TextEditingController _quejaController;
-  //late TextEditingController _rechazoController;
   final suministrosBanco = SuministrosBanco();
   final quejasBanco = QuejasBanco();
   
-  
-  void initState() {
-    super.initState();
-    //final value = Provider.of<Datamodel>(context, listen: false);
-    //_quejaController = TextEditingController();
-    //_rechazoController = TextEditingController();// Inicializa con el valor de la base de datos
-  }
 
-  void dispose() {
-    //_quejaController.clear();
-    //_rechazoController.clear(); // Limpia el controlador al salir
-    super.dispose();
-  }
 
   void _submitForm(Map<String, dynamic> item) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -56,36 +42,39 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             constraints: BoxConstraints(
             maxWidth: screenWidth*0.70,
             minWidth: screenWidth*0.70,
-            //maxHeight: 110,
-            //minHeight: 110,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  '¿No ha recibido los soportes completos?',
-                  style:TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,)
-                  ),
-                  SizedBox(height: 15),
-                  TextField(
-                    maxLength: 100,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                    controller: valor.noteController,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      counterStyle: TextStyle(color: Colors.white),
-                      //contentPadding: EdgeInsets.symmetric(vertical: 8),
-                      //labelText: 'Comentarios',
-                      hintText: 'Escribe un comentario..',
-                      //labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
-                      hintStyle: TextStyle(color: Colors.white,fontSize: 16),
-                    ),
-                    maxLines: 1,
-                  ),
-              ],
+            child: IntrinsicHeight(
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '¿No ha recibido los soportes?',
+                      style:TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,)
+                      ),
+                      SizedBox(height: 15),
+                      TextField(
+                        maxLength: 100,
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        controller: valor.noteController,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          counterStyle: TextStyle(color: Colors.white),
+                          //contentPadding: EdgeInsets.symmetric(vertical: 8),
+                          //labelText: 'Comentarios',
+                          hintText: 'Escribe un comentario..',
+                          //labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
+                          hintStyle: TextStyle(color: Colors.white,fontSize: 16),
+                        ),
+                        maxLines: null,
+                      ),
+                  ],
+                ),
+              ),
             ),
           ),
         
@@ -164,35 +153,40 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
             maxWidth: screenWidth*0.70,
             minWidth: screenWidth*0.70,
             //maxHeight: 110,
-            minHeight: 110,
+            //minHeight: 110,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  '¿Los soportes recibidos son incongruentes?',
-                  style:TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,)
-                  ),
-                  SizedBox(height: 15),
-                  TextField(
-                    maxLength: 100,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                    controller: valor.noteController,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      counterStyle: TextStyle(color: Colors.white),
-                      //contentPadding: EdgeInsets.symmetric(vertical: 8),
-                      //labelText: 'Comentarios',
-                      hintText: 'Escribe un comentario..',
-                      //labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
-                      hintStyle: TextStyle(color: Colors.white,fontSize: 16),
-                    ),
-                    maxLines: 1,
-                  ),
-              ],
+            child: IntrinsicHeight(
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '¿Los soportes recibidos son incongruentes?',
+                      style:TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,)
+                      ),
+                      SizedBox(height: 15),
+                      TextField(
+                        maxLength: 100,
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                        controller: valor.noteController,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          counterStyle: TextStyle(color: Colors.white),
+                          //contentPadding: EdgeInsets.symmetric(vertical: 8),
+                          //labelText: 'Comentarios',
+                          hintText: 'Escribe un comentario..',
+                          //labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
+                          hintStyle: TextStyle(color: Colors.white,fontSize: 16),
+                        ),
+                        maxLines: null,
+                      ),
+                  ],
+                ),
+              ),
             ),
           ),
         
@@ -247,7 +241,8 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
       ),   
     );
   }
-
+//Expanded(child: Text('${widget.solicitud['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}', style:TextStyle(fontSize: 17,color:Colors.white),overflow: TextOverflow.clip)),
+  
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -462,7 +457,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                                   ),
                                 ),
                               ),
-                          icon: const Icon(Icons.stop_circle,size:20),
+                          icon: const Icon(Icons.notifications_active,size:20),
                           label: const Text('Rechazar soportes',style:TextStyle(fontSize: 17,color:Colors.white)),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color.fromARGB(255, 233, 39, 26),

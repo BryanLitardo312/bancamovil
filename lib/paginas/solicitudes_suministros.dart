@@ -66,7 +66,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             itemBuilder: (context, index) {
               final item = value.solicitudes_suministros[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20),
+                padding: const EdgeInsets.only(bottom:15,left: 20,right:20),
                 child: InkWell(
                   onTap: (){
                     Navigator.push(
@@ -104,17 +104,17 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    value.tipo != 'usuario' ? Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                                    //Text('De: ${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,),
+                                    //value.tipo != 'usuario' ? Text('${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    Text('${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
                                     Text(
                                       'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.clip,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                     Text(
                                       'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.clip,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
                                 ),
@@ -144,7 +144,6 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             },
         );
   }
-  
   Widget _buildNovedadesList(Datamodel value) {
     return value.solicitudes_suministros.isEmpty
         ? Center(
@@ -173,7 +172,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             itemBuilder: (context, index) {
               final item = value.solicitudes_novedades[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20),
+                padding: const EdgeInsets.only(bottom:15,left: 20,right:20),
                 child: InkWell(
                   onTap: (){
                     Navigator.push(
@@ -211,7 +210,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    //value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
                                     Text(
                                       'Detalle: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
@@ -220,7 +220,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                     Text(
                                       'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.clip,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
                                 ),
@@ -278,7 +278,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
             itemBuilder: (context, index) {
               final item = value.solicitudes_novedades[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical:10,horizontal: 20),
+                padding: const EdgeInsets.only(bottom:15,left: 20,right:20),
                 child: InkWell(
                   onTap: (){
                     Navigator.push(
@@ -316,7 +316,8 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    //value.tipo != 'usuario' ? Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
                                     Text(
                                       'Detalle: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
@@ -325,7 +326,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                     Text(
                                       'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
                                       style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.clip,
+                                      overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
                                 ),
@@ -359,7 +360,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double imageHeight = screenHeight * 0.30;
+    final double imageHeight = screenHeight * 0.35;
 
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(
