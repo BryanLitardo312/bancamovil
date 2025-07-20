@@ -134,12 +134,8 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              //const SizedBox(height: 100),
-              //Image.asset('lib/imagenes/primax_logo2.png', width: screenWidth*0.9),
-              //SizedBox(height: screenHeight*0.31),
-              //const SizedBox(height: 60),
-              Image.asset('lib/imagenes/logo-primax.png', width: screenWidth*0.65),
-              const SizedBox(height: 70),
+              Image.asset('lib/imagenes/logo-primax.png', width: screenWidth*0.70),
+              const SizedBox(height: 80),
               //const Text('Bienvenido', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
               Textfield(
                 controller: emailcontroller,
@@ -147,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: false,
                 suffixIcon: const Icon(Icons.email_outlined),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 20),
               Textfield2(
                 controller: passwordcontroller,
                 obscureText: _obscureText,

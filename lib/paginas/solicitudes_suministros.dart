@@ -36,111 +36,6 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
     super.dispose();
   }
 
-  /*void _submitForm(Map<String, dynamic> item) {
-    final double screenWidth = MediaQuery.of(context).size.width;
-    //final double screenHeight = MediaQuery.of(context).size.height;
-    final valor = Provider.of<Datamodel>(context, listen: false);
-
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Colors.blueGrey[900],
-        insetPadding: EdgeInsets.symmetric(vertical: 10),
-        title: const Text(
-          'Notificación',
-          style: TextStyle(color: Colors.white)
-          ),
-        content: ConstrainedBox(
-            constraints: BoxConstraints(
-            maxWidth: screenWidth*0.70,
-            minWidth: screenWidth*0.70,
-            maxHeight: 110,
-            minHeight: 110,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  '¿No llegó completo el pedido?',
-                  style:TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,)
-                  ),
-                  const SizedBox(height: 15),
-                  TextField(
-                    maxLength: 100,
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                    controller: valor.noteController,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      counterStyle: TextStyle(color: Colors.white),
-                      //contentPadding: EdgeInsets.symmetric(vertical: 8),
-                      //labelText: 'Comentarios',
-                      hintText: 'Escribe un comentario..',
-                      //labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),
-                      hintStyle: TextStyle(color: Colors.white,fontSize: 16),
-                    ),
-                    maxLines: 1,
-                  ),
-              ],
-            ),
-          ),
-        
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              valor.noteController.clear();
-            },
-            child: const Text(
-              'Cancelar',
-              style:TextStyle(
-                fontSize: 19,
-                color:Colors.white,
-                )
-              ),
-            ),
-            TextButton(
-              onPressed: () async {
-                final newNote = BancoQuejas(
-                  //id: DateTime.now().millisecondsSinceEpoch, // O proporciona un ID si es necesario
-                  bodega: item['bodega'],
-                  estacion: item['estacion'],
-                  proceso: 'Suministros',
-                  detalle: item['detalle'],
-                  salida: item['created_at'],
-                  observacion: valor.noteController.text.toString(),
-                );
-                try {
-                  //print('Datos a enviar: ${item['NOMBRE']}');
-                  await quejasBanco.createForm(newNote);
-                  Navigator.pop(context);
-                  valor.noteController.clear();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Notificación enviada correctamente',style: TextStyle(fontSize: 18),),backgroundColor: Colors.green),
-                  );
-                  //noteController.clear();
-                } catch (e) {
-                  // Maneja el error si es necesario
-                  //print('Error al crear el formulario: $e');
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Error al enviar la solicitud: $e')),
-                  );
-                }
-              },
-              child: const Text(
-                'Notificar',
-                style:TextStyle(
-                  fontSize: 19,
-                  color:Colors.white,
-                  )
-                ),
-            ),
-        ],
-      ),   
-    );
-  }*/
 
   
   Widget _buildSolicitudesList(Datamodel value) {
@@ -468,7 +363,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
 
     return Consumer<Datamodel>(
       builder: (context, value, child) => Scaffold(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.grey[200],
         extendBodyBehindAppBar: true,
         body: Stack(
           children: [

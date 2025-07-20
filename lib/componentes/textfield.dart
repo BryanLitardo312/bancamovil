@@ -13,10 +13,10 @@ class Textfield extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Container(
-        height: 50,
+        height: 45,
         child: TextField(
           controller: controller,
-          obscureText: obscureText,
+          //obscureText: obscureText,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
@@ -31,7 +31,8 @@ class Textfield extends StatelessWidget{
             hintText: hintText,
             hintStyle: TextStyle(
               color: Colors.grey[900],
-              overflow: TextOverflow.ellipsis,),
+              overflow: TextOverflow.ellipsis,
+            ),
             suffixIcon: suffixIcon,
             //border: InputBorder.none,
           ),
@@ -72,11 +73,11 @@ class _Textfield2State extends State<Textfield2> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Container(
-        height: 50,
+        height: 45,
         child: TextField(
           controller: widget.controller,
           obscureText: _obscureText,
-          keyboardType: TextInputType.emailAddress,
+          keyboardType: TextInputType.visiblePassword,
           decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(

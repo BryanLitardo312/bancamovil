@@ -14,27 +14,31 @@ class MyTabBar extends StatelessWidget {
       tabs: [
         Tab(
           text: 'Provisión',
-          icon:Icon(Icons.local_shipping_rounded),
+          icon:Icon(Icons.local_shipping_rounded,size:40,color:Colors.black),
         ),
         Tab(
           text: 'Novedades',
-          icon:Icon(Icons.account_balance),
+          icon:Icon(Icons.account_balance_rounded,size:40,color:Colors.black),
         ),
         Tab(
           text: 'Retornos',
-          icon:Icon(Icons.monetization_on_outlined),
+          icon:Icon(Icons.monetization_on_outlined,size:40,color:Colors.black),
         ),
       ],
-      isScrollable: false,
-      dividerColor: Colors.grey[900],
+      /*indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: Colors.grey[300], // Color de fondo del tab seleccionado
+      ),*/
+      dividerColor: Colors.grey[200],
       indicatorColor: Colors.blue,
+      indicatorWeight:4.0,
       labelStyle: const TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
+        fontSize: 16,
+        //fontWeight: FontWeight.bold,
+        color: Colors.black,
       ),
-      labelColor: Colors.white,
-      unselectedLabelColor: Colors.grey[500],
+      labelColor: Colors.black,
+      unselectedLabelColor: Colors.grey[900],
     );
   }
 }
