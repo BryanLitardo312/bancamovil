@@ -23,7 +23,6 @@ class _PerfilPageState extends State<PerfilPage> {
   @override
   void initState() {
     super.initState();
-    //final value = Provider.of<Datamodel>(context, listen: false);
     _nombreController = TextEditingController();
     _apellidoController = TextEditingController();
     _contactoController = TextEditingController();
@@ -44,9 +43,24 @@ class _PerfilPageState extends State<PerfilPage> {
   }
 
   void _actualizarNombre() async {
+    final value = Provider.of<Datamodel>(context, listen: false);
     final nuevoNombre = _nombreController.text.trim();
     final nuevoApellido = _apellidoController.text.trim();
-    if (nuevoNombre.isEmpty || nuevoApellido.isEmpty) {
+    final nuevoContacto = _contactoController.text.trim();
+    final nuevoNombrepromotor = _nombrepromotorController.text.trim();
+    final nuevoApellidopromotor = _apellidopromotorController.text.trim();
+    final nuevoContactopromotor = _contactopromotorController.text.trim();
+
+    if ((nuevoNombre.isEmpty || nuevoApellido.isEmpty || nuevoContacto.isEmpty) || ((nuevoNombrepromotor.isEmpty || nuevoApellidopromotor.isEmpty || nuevoContactopromotor.isEmpty) && (value.isActive)))  {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Campo vacío',style:TextStyle(fontSize: 18)),
+          backgroundColor:  Color.fromARGB(255, 233, 39, 26),
+        ),
+      );
+      return;
+    }
+    /*if ((nuevoNombrepromotor.isEmpty || nuevoApellidopromotor.isEmpty || nuevoContactopromotor.isEmpty) && (value.isActive))  {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Campo vacío',style:TextStyle(fontSize: 18)),
@@ -54,11 +68,10 @@ class _PerfilPageState extends State<PerfilPage> {
         ),
       );
       return;
-    }
+    }*/
 
     try {
-      final value = Provider.of<Datamodel>(context, listen: false);
-      await value.actualizarNombreUsuario(nuevoNombre,nuevoApellido);
+      await value.actualizarNombreUsuario(nuevoNombre,nuevoApellido,nuevoContacto,nuevoNombrepromotor,nuevoApellidopromotor,nuevoContactopromotor);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Nombre actualizado',style:TextStyle(fontSize: 18),),
@@ -72,7 +85,7 @@ class _PerfilPageState extends State<PerfilPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Error al actualizar el nombre: $e'),
-          backgroundColor: Colors.red,
+          backgroundColor: Color.fromARGB(255, 233, 39, 26),
         ),
       );
     }

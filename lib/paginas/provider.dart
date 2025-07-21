@@ -69,7 +69,7 @@ class Datamodel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> actualizarNombreUsuario(String nuevoNombre,String nuevoApellido) async {
+  Future<void> actualizarNombreUsuario(String nuevoNombre,String nuevoApellido, String nuevoContacto, String nuevoNombrepromotor,String nuevoApellidopromotor,String nuevoContactopromotor) async {
     final supabase = Supabase.instance.client;
     final user = supabase.auth.currentUser;
     if (user != null) {
@@ -91,17 +91,18 @@ class Datamodel extends ChangeNotifier {
         .single();
       final bodegaEstacion = bodega_Estacion["BOD"];
     
-      await supabase
-        .from('Contactos')
-        .update({'nombre': nuevoNombre})
-        .eq('BOD', bodegaEstacion);
-      
-      await supabase
-        .from('Contactos')
-        .update({'apellidos': nuevoApellido})
-        .eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'nombre': nuevoNombre}).eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'apellidos': nuevoApellido}).eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'contacto': nuevoContacto}).eq('BOD', bodegaEstacion);
+      if (isActive){
+        await supabase.from('Contactos').update({'nombre_promotor': nuevoNombrepromotor}).eq('BOD', bodegaEstacion);
+        await supabase.from('Contactos').update({'apellidos_promotor': nuevoApellidopromotor}).eq('BOD', bodegaEstacion);
+        await supabase.from('Contactos').update({'contacto_promotor': nuevoContactopromotor}).eq('BOD', bodegaEstacion);
+      }
+
       nombreUsuario = nuevoNombre;
       apellidoUsuario = nuevoApellido;
+      
       notifyListeners();
 
       if (genero_list=='Masculino'){
