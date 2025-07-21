@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -39,9 +41,16 @@ class Datamodel extends ChangeNotifier {
   final TextEditingController noteController = TextEditingController();
   String? userId;
   Map<String, dynamic> userData = {};
-  String? genero_list;
+  String? genero_user;
+  String? cargo_user;
+  String? categoria_estacion;
+  String? tm_pista;
+  String? tm_tienda;
   List<String> opcionesGenero = ['Masculino', 'Femenino'];
   List<String> opcionesCargo = ['Gerente', 'Soporte'];
+  List<String> opcionesCategoria = ['Pista', 'Stand Alone', 'Pista/Tienda'];
+  List<String> opcionespista = ['Gerardo Velez', 'Shiraly Pazos', 'William Hungría','Ramon Tumbaco','Henry Chungandro','Mercedes Plaza','Rayniero Castro'];
+  List<String> opcionestienda = ['Mildred Mantilla','Eduardo Donoso','Ana Gonzales','Gerardo Velez','Mercedes Plaza','Rayniero Castro'];
   bool isLoading = false;
   bool isActive = false;
 
@@ -58,10 +67,24 @@ class Datamodel extends ChangeNotifier {
   }
 
   void cambiarGenero(String? nuevoGenero) {
-    if (nuevoGenero != null) {
-      genero_list = nuevoGenero;
-      notifyListeners();
-    }
+    genero_user = nuevoGenero;
+    notifyListeners();
+  }
+  void cambiarCargo(String? nuevoCargo) {
+    cargo_user = nuevoCargo;
+    notifyListeners();
+  }
+  void cambiarCategoria(String? nuevaCategoria) {
+    categoria_estacion = nuevaCategoria;
+    notifyListeners();
+  }
+  void cambiarpista(String? nuevapista) {
+    tm_pista = nuevapista;
+    notifyListeners();
+  }
+  void cambiartienda(String? nuevatienda) {
+    tm_tienda = nuevatienda;
+    notifyListeners();
   }
 
   void cambiarswitch(bool nuevovalor) {
@@ -105,12 +128,12 @@ class Datamodel extends ChangeNotifier {
       
       notifyListeners();
 
-      if (genero_list=='Masculino'){
+      if (genero_user=='Masculino'){
         await supabase
           .from('Contactos')
           .update({'Sexo': 'M'})
           .eq('BOD', bodegaEstacion);
-      } if (genero_list=='Femenino'){
+      } if (genero_user=='Femenino'){
         await supabase
           .from('Contactos')
           .update({'Sexo': 'F'})
@@ -139,12 +162,12 @@ class Datamodel extends ChangeNotifier {
       nombreUsuario = nuevoNombre;
       apellidoUsuario = nuevoApellido;
       notifyListeners();
-      if (genero_list=='Masculino'){
+      if (genero_user=='Masculino'){
         await supabase
           .from('ContactosTM')
           .update({'Sexo': 'M'})
           .eq('id_user', idgerencial);
-      } if (genero_list=='Femenino'){
+      } if (genero_user=='Femenino'){
         await supabase
           .from('ContactosTM')
           .update({'Sexo': 'F'})

@@ -102,15 +102,15 @@ class _DropDownCargoState extends State<DropDownCargo> {
           focusedBorder: InputBorder.none,
         ),
         leadingIcon: Icon(Icons.person, color: Colors.grey[800]),
-        label: Text('Cargo',style: TextStyle(fontSize: 16,color: Colors.grey[700],fontWeight: FontWeight.bold,)),
+        label: Text('Cargo Atimasa',style: TextStyle(fontSize: 16,color: Colors.grey[700],fontWeight: FontWeight.bold,)),
         //initialSelection: value.genero_list,
-        onSelected: (String? genero) {
-          value.cambiarGenero(genero);
+        onSelected: (String? cargo) {
+          value.cambiarCargo(cargo);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String genero) {
+        dropdownMenuEntries: value.opcionesCargo.map((String cargo) {
           return DropdownMenuEntry<String>(
-            value: genero,
-            label: genero,
+            value: cargo,
+            label: cargo,
             style: ButtonStyle(
               textStyle: MaterialStateProperty.all(
                 TextStyle(fontSize: 16),
@@ -166,13 +166,13 @@ class _DropDownCategoriaState extends State<DropDownCategoria> {
         leadingIcon: Icon(Icons.person, color: Colors.grey[800]),
         label: Text('Categoría',style: TextStyle(fontSize: 16,color: Colors.grey[700],fontWeight: FontWeight.bold,)),
         //initialSelection: value.genero_list,
-        onSelected: (String? genero) {
-          value.cambiarGenero(genero);
+        onSelected: (String? categoria) {
+          value.cambiarCategoria(categoria);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String genero) {
+        dropdownMenuEntries: value.opcionesGenero.map((String categoria) {
           return DropdownMenuEntry<String>(
-            value: genero,
-            label: genero,
+            value: categoria,
+            label: categoria,
             style: ButtonStyle(
               textStyle: MaterialStateProperty.all(
                 TextStyle(fontSize: 16),
@@ -226,13 +226,13 @@ class _DropDownTMPistaState extends State<DropDownTMPista> {
         leadingIcon: Icon(Icons.person, color: Colors.grey[800]),
         label: Text('TM Pista',style: TextStyle(fontSize: 16,color: Colors.grey[700],fontWeight: FontWeight.bold,)),
         //initialSelection: value.genero_list,
-        onSelected: (String? genero) {
-          value.cambiarGenero(genero);
+        onSelected: (String? pista) {
+          value.cambiarpista(pista);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String genero) {
+        dropdownMenuEntries: value.opcionesGenero.map((String pista) {
           return DropdownMenuEntry<String>(
-            value: genero,
-            label: genero,
+            value: pista,
+            label: pista,
             style: ButtonStyle(
               textStyle: MaterialStateProperty.all(
                 TextStyle(fontSize: 16),
@@ -287,13 +287,13 @@ class _DropDownTMTiendaState extends State<DropDownTMTienda> {
         leadingIcon: Icon(Icons.person, color: Colors.grey[800]),
         label: Text('TM Tienda',style: TextStyle(fontSize: 16,color: Colors.grey[700],fontWeight: FontWeight.bold,)),
         //initialSelection: value.genero_list,
-        onSelected: (String? genero) {
-          value.cambiarGenero(genero);
+        onSelected: (String? tienda) {
+          value.cambiartienda(tienda);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String genero) {
+        dropdownMenuEntries: value.opcionesGenero.map((String tienda) {
           return DropdownMenuEntry<String>(
-            value: genero,
-            label: genero,
+            value: tienda,
+            label: tienda,
             style: ButtonStyle(
               textStyle: MaterialStateProperty.all(
                 TextStyle(fontSize: 16),
