@@ -87,7 +87,7 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
                         child: Row(
                             children: [
                               Expanded(
@@ -96,25 +96,37 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Sol. #${item['requests']}',
+                                      'Solic. #${item['requests']}',
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    //value.tipo != 'usuario' ? Text('${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                                    Text('${item['estacion']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
-                                    Text(
-                                      'Materiales: ${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
+                                    //value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    
+                                    //Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.person,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text('${item['estacion']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
                                     ),
-                                    Text(
-                                      'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
+                                    Row(
+                                      children: [
+                                        Icon(Icons.local_shipping_rounded,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text('${item['detalle'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.calendar_month,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text(DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at'])),style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -202,25 +214,37 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Sol. #${item['id']}',
+                                      'Solic. #${item['id']}',
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
                                     //value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                                    Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
-                                    Text(
-                                      'Detalle: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
+                                    
+                                    //Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.person,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text('${item['EESS']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
                                     ),
-                                    Text(
-                                      'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
+                                    Row(
+                                      children: [
+                                        Icon(Icons.local_shipping_rounded,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text('${item['DETALLE']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.calendar_month,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text(DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at'])),style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -308,25 +332,37 @@ class _HistorialState extends State<Historial> with SingleTickerProviderStateMix
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Sol. #${item['id']}',
+                                      'Solic. #${item['id']}',
                                       style: TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
                                       ),
                                     ), 
                                     const SizedBox(height: 5),
-                                    //value.tipo != 'usuario' ? Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
-                                    Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
-                                    Text(
-                                      'Detalle: ${item['DETALLE'].replaceAll(RegExp(r'[\[\]"]'), '').split(',').join(', ')}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
+                                    //value.tipo != 'usuario' ? Text('DE: ${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.clip,) : SizedBox.shrink(),
+                                    
+                                    //Text('${item['EESS']}', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white), overflow: TextOverflow.ellipsis,),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.person,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text('${item['EESS']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
                                     ),
-                                    Text(
-                                      'Fecha: ${DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at']))}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                                      overflow: TextOverflow.ellipsis,
+                                    Row(
+                                      children: [
+                                        Icon(Icons.local_shipping_rounded,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text('${item['DETALLE']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(Icons.calendar_month,color:Colors.white),
+                                        SizedBox(width: 10),
+                                        Expanded(child: Text(DateFormat('dd-MM-yyyy').format(DateTime.parse(item['created_at'])),style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                      ],
                                     ),
                                   ],
                                 ),

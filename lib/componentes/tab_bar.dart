@@ -14,15 +14,15 @@ class MyTabBar extends StatelessWidget {
       tabs: [
         Tab(
           text: 'Provisión',
-          icon:Icon(Icons.local_shipping_rounded,size:40,color:Colors.black),
+          icon:Icon(Icons.local_shipping_rounded,size:30,color:Colors.black),
         ),
         Tab(
           text: 'Novedades',
-          icon:Icon(Icons.account_balance_rounded,size:40,color:Colors.black),
+          icon:Icon(Icons.account_balance_rounded,size:30,color:Colors.black),
         ),
         Tab(
           text: 'Retornos',
-          icon:Icon(Icons.monetization_on_outlined,size:40,color:Colors.black),
+          icon:Icon(Icons.monetization_on_outlined,size:30,color:Colors.black),
         ),
       ],
       /*indicator: BoxDecoration(
@@ -31,10 +31,10 @@ class MyTabBar extends StatelessWidget {
       ),*/
       indicatorPadding: EdgeInsets.symmetric(horizontal: 0.1),
       dividerColor: Colors.grey[200],
-      indicatorColor: Colors.blue,
+      indicatorColor: const Color.fromARGB(255, 13, 70, 116),
       indicatorWeight:5.0,
       labelStyle: const TextStyle(
-        fontSize: 16,
+        fontSize: 17,
         //fontWeight: FontWeight.bold,
         color: Colors.black,
       ),

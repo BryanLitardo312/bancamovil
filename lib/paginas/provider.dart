@@ -43,14 +43,16 @@ class Datamodel extends ChangeNotifier {
   Map<String, dynamic> userData = {};
   String? genero_user;
   String? cargo_user;
+  String? cargo_admin;
   String? categoria_estacion;
   String? tm_pista;
   String? tm_tienda;
   List<String> opcionesGenero = ['Masculino', 'Femenino'];
   List<String> opcionesCargo = ['Gerente', 'Soporte'];
+  List<String> opcionesCargoAdmin = ['Operación directa', 'Administración'];
   List<String> opcionesCategoria = ['Pista', 'Stand Alone', 'Pista/Tienda'];
-  List<String> opcionespista = ['Gerardo Velez', 'Shiraly Pazos', 'William Hungría','Ramon Tumbaco','Henry Chungandro','Mercedes Plaza','Rayniero Castro'];
-  List<String> opcionestienda = ['Mildred Mantilla','Eduardo Donoso','Ana Gonzales','Gerardo Velez','Mercedes Plaza','Rayniero Castro'];
+  List<String> opcionespista = ['No aplica','Gerardo Velez', 'Shiraly Pazos', 'William Hungría','Ramon Tumbaco','Henry Chungandro','Mercedes Plaza','Rayniero Castro'];
+  List<String> opcionestienda = ['No aplica','Mildred Mantilla','Eduardo Donoso','Ana Gonzales','Gerardo Velez','Mercedes Plaza','Rayniero Castro'];
   bool isLoading = false;
   bool isActive = false;
 
@@ -72,6 +74,10 @@ class Datamodel extends ChangeNotifier {
   }
   void cambiarCargo(String? nuevoCargo) {
     cargo_user = nuevoCargo;
+    notifyListeners();
+  }
+  void cambiarCargoAdmin(String? nuevoCargoAdmin) {
+    cargo_admin = nuevoCargoAdmin;
     notifyListeners();
   }
   void cambiarCategoria(String? nuevaCategoria) {
@@ -125,54 +131,33 @@ class Datamodel extends ChangeNotifier {
 
       nombreUsuario = nuevoNombre;
       apellidoUsuario = nuevoApellido;
-      
       notifyListeners();
 
-      if (genero_user=='Masculino'){
-        await supabase
-          .from('Contactos')
-          .update({'Sexo': 'M'})
-          .eq('BOD', bodegaEstacion);
-      } if (genero_user=='Femenino'){
-        await supabase
-          .from('Contactos')
-          .update({'Sexo': 'F'})
-          .eq('BOD', bodegaEstacion);
-      }
+      final sexoCode = genero_user == 'Masculino' ? 'M' : 'F';
+      await supabase.from('Contactos').update({'Sexo': sexoCode}).eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'cargo': cargo_user}).eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'categoria': categoria_estacion}).eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'tm_pista': tm_pista}).eq('BOD', bodegaEstacion);
+      await supabase.from('Contactos').update({'tm_tienda': tm_tienda}).eq('BOD', bodegaEstacion);
+
+
 
     } if (tipo=='admin' || tipo=='coordinador') {
 
-      final idGerencial = await supabase
-        .from('Directorio')
-        .select("ID_user")
-        .eq("Correo EDS", correoInicio)
-        .single();
+      final idGerencial = await supabase.from('Directorio').select("ID_user").eq("Correo EDS", correoInicio).single();
       final idgerencial=idGerencial['ID_user'];
       
-      await supabase
-        .from('ContactosTM')
-        .update({'nombre': nuevoNombre})
-        .eq('id_user', idgerencial);
-
-      await supabase
-        .from('ContactosTM')
-        .update({'apellido': nuevoApellido})
-        .eq('id_user', idgerencial);
+      await supabase.from('ContactosTM').update({'nombre': nuevoNombre}).eq('id_user', idgerencial);
+      await supabase.from('ContactosTM').update({'apellido': nuevoApellido}).eq('id_user', idgerencial);
       
       nombreUsuario = nuevoNombre;
       apellidoUsuario = nuevoApellido;
       notifyListeners();
-      if (genero_user=='Masculino'){
-        await supabase
-          .from('ContactosTM')
-          .update({'Sexo': 'M'})
-          .eq('id_user', idgerencial);
-      } if (genero_user=='Femenino'){
-        await supabase
-          .from('ContactosTM')
-          .update({'Sexo': 'F'})
-          .eq('id_user', idgerencial);
-      }
+      final sexoCode = genero_user == 'Masculino' ? 'M' : 'F';
+      await supabase.from('ContactosTM').update({'Sexo': sexoCode}).eq('id_user', idgerencial);
+      await supabase.from('ContactosTM').update({'contacto': nuevoContacto}).eq('id_user', idgerencial);
+      await supabase.from('ContactosTM').update({'cargo': cargo_admin}).eq('id_user', idgerencial);
+
     }
     }
   }

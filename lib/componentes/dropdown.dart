@@ -126,6 +126,67 @@ class _DropDownCargoState extends State<DropDownCargo> {
 }
 
 
+class DropDownCargoAdmin extends StatefulWidget {
+
+  const DropDownCargoAdmin({
+    super.key,
+  });
+
+  @override
+  _DropDownCargoAdminState createState() => _DropDownCargoAdminState();
+}
+
+class _DropDownCargoAdminState extends State<DropDownCargoAdmin> {
+  @override
+    Widget build(BuildContext context) {
+      final value = Provider.of<Datamodel>(context, listen: false);
+      return LayoutBuilder(
+      builder: (context, constraints) {
+        return DropdownMenu<String>(
+        width: constraints.maxWidth,
+        menuStyle: MenuStyle(
+          minimumSize: MaterialStateProperty.all(
+            Size(constraints.maxWidth, 0), // Ancho completo para el menú
+          ),
+          maximumSize: MaterialStateProperty.all(
+            Size(constraints.maxWidth, double.infinity),
+          ),
+          backgroundColor: MaterialStateProperty.all(Colors.grey[200]),
+          elevation: MaterialStateProperty.all(5),
+        ),
+        textStyle: TextStyle(color: Colors.grey[900], fontSize: 16),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          border: InputBorder.none,           // Sin borde normal
+          enabledBorder: InputBorder.none,    // Sin borde cuando está habilitado
+          focusedBorder: InputBorder.none,
+        ),
+        leadingIcon: Icon(Icons.person, color: Colors.grey[800]),
+        label: Text('Departamento',style: TextStyle(fontSize: 16,color: Colors.grey[700],fontWeight: FontWeight.bold,)),
+        //initialSelection: value.genero_list,
+        onSelected: (String? cargo) {
+          value.cambiarCargoAdmin(cargo);
+        },
+        dropdownMenuEntries: value.opcionesCargoAdmin.map((String cargo) {
+          return DropdownMenuEntry<String>(
+            value: cargo,
+            label: cargo,
+            style: ButtonStyle(
+              textStyle: MaterialStateProperty.all(
+                TextStyle(fontSize: 16),
+              ),
+              alignment: Alignment.center, // Centrar el texto
+            ),
+          );
+        }).toList(),
+      );
+      }
+      );
+    }
+}
+
+
 
 class DropDownCategoria extends StatefulWidget {
 
@@ -169,7 +230,7 @@ class _DropDownCategoriaState extends State<DropDownCategoria> {
         onSelected: (String? categoria) {
           value.cambiarCategoria(categoria);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String categoria) {
+        dropdownMenuEntries: value.opcionesCategoria.map((String categoria) {
           return DropdownMenuEntry<String>(
             value: categoria,
             label: categoria,
@@ -229,7 +290,7 @@ class _DropDownTMPistaState extends State<DropDownTMPista> {
         onSelected: (String? pista) {
           value.cambiarpista(pista);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String pista) {
+        dropdownMenuEntries: value.opcionespista.map((String pista) {
           return DropdownMenuEntry<String>(
             value: pista,
             label: pista,
@@ -290,7 +351,7 @@ class _DropDownTMTiendaState extends State<DropDownTMTienda> {
         onSelected: (String? tienda) {
           value.cambiartienda(tienda);
         },
-        dropdownMenuEntries: value.opcionesGenero.map((String tienda) {
+        dropdownMenuEntries: value.opcionestienda.map((String tienda) {
           return DropdownMenuEntry<String>(
             value: tienda,
             label: tienda,

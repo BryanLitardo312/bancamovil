@@ -54,37 +54,42 @@ class _PerfilPageState extends State<PerfilPage> {
     if ((nuevoNombre.isEmpty || nuevoApellido.isEmpty || nuevoContacto.isEmpty) || ((nuevoNombrepromotor.isEmpty || nuevoApellidopromotor.isEmpty || nuevoContactopromotor.isEmpty) && (value.isActive)))  {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Campo vacío',style:TextStyle(fontSize: 18)),
+          content: Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: Text('Campo vacío',style:TextStyle(fontSize: 18)),
+          ),
           backgroundColor:  Color.fromARGB(255, 233, 39, 26),
         ),
       );
       return;
     }
-    /*if ((nuevoNombrepromotor.isEmpty || nuevoApellidopromotor.isEmpty || nuevoContactopromotor.isEmpty) && (value.isActive))  {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Campo vacío',style:TextStyle(fontSize: 18)),
-          backgroundColor: Colors.red,
-        ),
-      );
-      return;
-    }*/
+
 
     try {
       await value.actualizarNombreUsuario(nuevoNombre,nuevoApellido,nuevoContacto,nuevoNombrepromotor,nuevoApellidopromotor,nuevoContactopromotor);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Nombre actualizado',style:TextStyle(fontSize: 18),),
-          backgroundColor: Colors.green,
+          content: Padding(
+            padding: EdgeInsets.symmetric(vertical:10),
+            child: Text('Información actualizada',style:TextStyle(fontSize: 18),),
+          ),
+          backgroundColor: Color.fromARGB(255, 39, 131, 42),
         ),
       );
       _nombreController.clear();
       _apellidoController.clear();
+      _contactoController.clear();
+      _nombrepromotorController.clear();
+      _apellidopromotorController.clear();
+      _contactopromotorController.clear();
 
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error al actualizar el nombre: $e'),
+          content: Padding(
+            padding: const EdgeInsets.symmetric(vertical:10),
+            child: Text('Error al actualizar el nombre: $e'),
+          ),
           backgroundColor: Color.fromARGB(255, 233, 39, 26),
         ),
       );
@@ -142,48 +147,51 @@ class _PerfilPageState extends State<PerfilPage> {
                       TextfieldPerfil(controller: _contactoController, hintText: 'Contacto', icon: Icons.call),
                       //const SizedBox(height: 30),
                       DropDownGenero(),
-                      DropDownCargo(),
-                      const SizedBox(height: 50),
-                      const Text('Datelles del negocio',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black),),
-                      const SizedBox(height: 5),
-                      Divider(
-                        height: 1.0,       // Altura del espacio que ocupa el Divider (no el grosor de la línea)
-                        thickness: 2.0,    // Grosor de la línea divisoria
-                        color: Colors.grey[700], // Color de la línea
-                        indent: 30.0,      // Espacio de sangría a la izquierda
-                        endIndent: 30.0,   // Espacio de sangría a la derecha
-                      ),
-                      const SizedBox(height: 30),
-                      DropDownCategoria(),
-                      DropDownTMPista(),
-                      DropDownTMTienda(),
-                      const SizedBox(height: 30),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                      value.tipo == 'usuario' ? DropDownCargo() : DropDownCargoAdmin(),
+                      value.tipo == 'usuario' ? Column(
                         children: [
-                          Text('Tienes soporte?',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.grey[900]),),
-                          const SizedBox(width:15),
-                          Switch(
-                            value: value.isActive, // Valor actual (true/false)
-                            onChanged: (bool nuevovalor) {value.cambiarswitch(nuevovalor);
-                            },
-                            // Personalización opcional:
-                            activeColor: Color.fromARGB(255, 40, 125, 43),  // Color cuando está activo
-                            inactiveThumbColor: Colors.grey, // Color del "pulgar" cuando está inactivo
-                            inactiveTrackColor: Colors.grey[300], // Color del fondo cuando está inactivo
+                          const SizedBox(height: 50),
+                          const Text('Datelles del negocio',style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color: Colors.black),),
+                          const SizedBox(height: 5),
+                          Divider(
+                            height: 1.0,       // Altura del espacio que ocupa el Divider (no el grosor de la línea)
+                            thickness: 2.0,    // Grosor de la línea divisoria
+                            color: Colors.grey[700], // Color de la línea
+                            indent: 30.0,      // Espacio de sangría a la izquierda
+                            endIndent: 30.0,   // Espacio de sangría a la derecha
                           ),
+                          const SizedBox(height: 30),
+                          DropDownCategoria(),
+                          DropDownTMPista(),
+                          DropDownTMTienda(),
+                          const SizedBox(height: 30),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text('Tiene Soporte?',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.grey[900]),),
+                              const SizedBox(width:15),
+                              Switch(
+                                value: value.isActive, // Valor actual (true/false)
+                                onChanged: (bool nuevovalor) {value.cambiarswitch(nuevovalor);
+                                },
+                                // Personalización opcional:
+                                activeColor: Color.fromARGB(255, 40, 125, 43),  // Color cuando está activo
+                                inactiveThumbColor: Colors.grey, // Color del "pulgar" cuando está inactivo
+                                inactiveTrackColor: Colors.grey[300], // Color del fondo cuando está inactivo
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 10),
+                          value.isActive == true ? 
+                          Column(
+                            children: [
+                              TextfieldPerfil(controller: _nombrepromotorController, hintText: 'Nombre', icon: Icons.person),
+                              TextfieldPerfil(controller: _apellidopromotorController, hintText: 'Apellido Paterno', icon: Icons.person),
+                              TextfieldPerfil(controller: _contactopromotorController, hintText: 'Contacto', icon: Icons.call),
+                            ],
+                          ): SizedBox.shrink(),
                         ],
-                      ),
-                      const SizedBox(height: 10),
-                      value.isActive == true ? 
-                      Column(
-                        children: [
-                          TextfieldPerfil(controller: _nombrepromotorController, hintText: 'Nombre', icon: Icons.person),
-                          TextfieldPerfil(controller: _apellidopromotorController, hintText: 'Apellido Paterno', icon: Icons.person),
-                          TextfieldPerfil(controller: _contactopromotorController, hintText: 'Contacto', icon: Icons.call),
-                        ],
-                      ): SizedBox.shrink(),
-
+                      ) : SizedBox.shrink(),
                       const SizedBox(height: 50),
                       Row(
                         children: [

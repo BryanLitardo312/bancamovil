@@ -121,21 +121,6 @@ class _PortadaState extends State<Portada> {
                           Text(value.encargado.toString(), style: TextStyle(color: Colors.grey[900], fontWeight: FontWeight.bold, fontSize: 20)),
                         ],
                       ),
-                      /*ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.popAndPushNamed(context, '/chat');
-                        },
-                        //icon: Icon(Icons.forum),  // Icono de foro/material
-                        label: Icon(Icons.forum,size:25),
-                        style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white, 
-                          backgroundColor: Colors.grey[800], // Color de fondo
-                          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10), // Espaciado interno
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50), // Bordes redondeados
-                          ),
-                        ),
-                      ),*/
                     ],
                   ),
                 ),

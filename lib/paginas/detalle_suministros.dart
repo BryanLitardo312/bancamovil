@@ -303,7 +303,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Solicitado', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+                            Text('Fecha', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
                             const SizedBox(height: 5),
                             Container(
                               decoration: BoxDecoration(
@@ -328,7 +328,7 @@ class _DetalleSuministroScreenState extends State<DetalleSuministroScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Orden', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+                            Text('Solicitud', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
                             const SizedBox(height: 5),
                             Container(
                               decoration: BoxDecoration(

@@ -274,33 +274,32 @@ class _BusquedaState extends State<Busqueda> {
                 fit: BoxFit.cover,
               ),
               
-              SizedBox(height: screenHeight*0.06), // Añadir un espacio entre el Container y el texto
+              const SizedBox(height: 40,), // Añadir un espacio entre el Container y el texto
 
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
+                padding: const EdgeInsets.symmetric(horizontal: 35),
                 child: DropdownButtonFormField<String>(
                   isExpanded: true,
                   value: _filtroSeleccionado,
-                  dropdownColor: Colors.grey[800],
+                  dropdownColor: Colors.black,
                   decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(15),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white, width: 3),
+                      //borderRadius: BorderRadius.circular(15),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(15),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white, width: 3),
                     ),
                     filled: true,
                     fillColor: Colors.grey[900],
-                    prefixIcon: Icon(Icons.list, color: Colors.white),
+                    prefixIcon: Icon(Icons.filter_alt_rounded, color: Colors.white),
                   ),
                   items: _opcionesFiltro.map((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(
                         value,
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: Colors.white,fontSize: 16),
                       ),
                     );
                   }).toList(),
@@ -342,15 +341,15 @@ class _BusquedaState extends State<Busqueda> {
                         itemCount: novedades.length, // Número de elementos en la lista
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 8),
+                            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
                             child: Card(
-                              elevation: 5,
+                              elevation: 7,
                               color:Colors.black,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(20),
                               ),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(20),
                                 child: Slidable(
                                   key: Key(novedades[index]['SECUENCIAL']),
                                   endActionPane: ActionPane(
@@ -366,7 +365,7 @@ class _BusquedaState extends State<Busqueda> {
                                         backgroundColor: Colors.blue,
                                         foregroundColor: Colors.white,
                                         icon: Icons.attach_money_rounded,
-                                        flex:2,
+                                        flex:4,
                                         label: 'Retorno',
                                         
                                       ),
@@ -379,42 +378,44 @@ class _BusquedaState extends State<Busqueda> {
                                         backgroundColor: const Color.fromARGB(255, 233, 39, 26),
                                         foregroundColor: Colors.white,
                                         icon: Icons.folder_copy_rounded,
-                                        flex:2,
+                                        flex:4,
                                         label: 'Soportes',
+                                        
                                         // Removed invalid 'style' parameter
                                       ),
                                     ],
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
+                                    padding: const EdgeInsets.symmetric(vertical: 12),
                                     child: ListTile(
-                                        leading: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 23,
-                                              child: Text(
-                                                novedades[index]['CODIGO'].toString(),
-                                                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,color: Colors.grey[900]),
-                                              ),
-                                            ),
-                                          ],
-                                          ),
-                                        title: Text(novedades[index]['NOMBRE'],style:TextStyle(fontSize: 17,fontWeight: FontWeight.bold,color:Colors.white),overflow: TextOverflow.ellipsis,),
+                                        title: Text(novedades[index]['NOMBRE'],style:TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color:Colors.white),overflow: TextOverflow.ellipsis,),
                                         subtitle: Column(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Text('Detalle: ${novedades[index]['DETALLE']}',style:TextStyle(fontSize: 16,color:Colors.white),overflow: TextOverflow.clip, ),
+                                            const SizedBox(height: 5,),
+                                            Row(
+                                              children: [
+                                                Icon(Icons.local_shipping_rounded,color:Colors.white),
+                                                SizedBox(width: 10),
+                                                Expanded(child: Text('${novedades[index]['DETALLE']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                              ],
+                                              ),
+                                            Row(
+                                              children: [
+                                                Icon(Icons.key,color:Colors.white),
+                                                SizedBox(width: 10),
+                                                Expanded(child: Text('${novedades[index]['SECUENCIAL']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
+                                              ],
+                                            ),
                                             //Text('#${novedades[index]['SECUENCIAL']}.',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.clip, ),
                                             Row(
                                               children: [
-                                                Text('${novedades[index]['FECHA']}',style:TextStyle(fontSize: 16,color:Colors.white),overflow: TextOverflow.clip, ),
-                                                SizedBox(width: 5,),
-                                                Icon(Icons.calendar_month_outlined,color:Colors.white)
+                                                Icon(Icons.calendar_month_outlined,color:Colors.white),
+                                                SizedBox(width: 10),
+                                                Expanded(child: Text('${novedades[index]['FECHA']}',style:TextStyle(fontSize: 15,color:Colors.white),overflow: TextOverflow.ellipsis, )),
                                               ],
-                                            ),
+                                              ),
                                           ],
                                         ),
                                         trailing: Column(
@@ -422,8 +423,8 @@ class _BusquedaState extends State<Busqueda> {
                                           crossAxisAlignment: CrossAxisAlignment.end,
                                           children: [
                                             Text(
-                                              novedades[index]['VALOR2'].toStringAsFixed(2),
-                                              style: TextStyle(fontSize: 22, color: novedades[index]['VALOR2'] >= 0 ? Colors.green : Colors.red, fontWeight: FontWeight.bold),
+                                              novedades[index]['VALOR2'].toStringAsFixed(1),
+                                              style: TextStyle(fontSize: 24, color: novedades[index]['VALOR2'] >= 0 ? Colors.green : Colors.red, fontWeight: FontWeight.bold),
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ],

@@ -300,7 +300,7 @@ class _DetalleDevolucionScreenState extends State<DetalleDevolucionScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Solicitado', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+                            Text('Fecha', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
                             const SizedBox(height: 5),
                             Container(
                               decoration: BoxDecoration(
@@ -325,7 +325,7 @@ class _DetalleDevolucionScreenState extends State<DetalleDevolucionScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Orden', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+                            Text('Solicitud', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
                             const SizedBox(height: 5),
                             Container(
                               decoration: BoxDecoration(
@@ -348,7 +348,7 @@ class _DetalleDevolucionScreenState extends State<DetalleDevolucionScreen> {
                     ],
                   ),
                   const SizedBox(height: 25),
-                  Text('Detalle', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+                  Text('Detalle Blindado', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
                   const SizedBox(height: 5),
                   Container(
                     decoration: BoxDecoration(
@@ -366,7 +366,7 @@ class _DetalleDevolucionScreenState extends State<DetalleDevolucionScreen> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  Text('Código de seguridad', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
+                  Text('Código de trazabilidad', style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold,color: Colors.black),),
                   const SizedBox(height: 5),
                   Container(
                     decoration: BoxDecoration(
