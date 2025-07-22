@@ -31,12 +31,9 @@ class _DataState extends State<Data> {
     maximoY=(_datosMostrados.values.isNotEmpty? _datosMostrados.values.reduce((a, b) => a > b ? a : b):1)*1.2;
     minimoY=(_datosMostrados.values.isNotEmpty? _datosMostrados.values.reduce((a, b) => a < b ? a : b):1)*1.2;
     //intervalo=(_datosMostrados.values.map((x) => x.abs()).reduce((a, b) => a > b ? a : b))*(0.60);
-    if (_datosMostrados.values.isEmpty) {
-      intervalo = 1.0; // Valor por defecto cuando no hay datos
-    } else {
-      intervalo = _datosMostrados.values.map((x) => x.abs()).reduce((a, b) => a > b ? a : b)*(0.60);
-    }  
-  
+    _datosMostrados.values.isEmpty ? 0.0 : intervalo = _datosMostrados.values.map((x) => x.abs()).reduce((a, b) => a > b ? a : b)*(0.60);
+    
+    
   }
 
   void orden_ascendente() {
