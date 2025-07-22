@@ -273,6 +273,7 @@ class Datamodel extends ChangeNotifier {
         .eq("Correo EDS", correoInicio)
         .single();
         bodegaEstacion = userResponse['BOD'];
+        
 
         final userName = await supabase
             .from('Directorio')

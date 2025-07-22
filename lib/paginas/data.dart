@@ -15,7 +15,7 @@ class Data extends StatefulWidget {
 class _DataState extends State<Data> {
   double maximoY=0;
   double minimoY=0;
-  double intervalo=0;
+  double intervalo=1;
 
 
   bool _ordenado = false;
@@ -30,7 +30,12 @@ class _DataState extends State<Data> {
     _datosMostrados = Map.from(_datosOriginales); // Copia para mostrar
     maximoY=(_datosMostrados.values.isNotEmpty? _datosMostrados.values.reduce((a, b) => a > b ? a : b):1)*1.2;
     minimoY=(_datosMostrados.values.isNotEmpty? _datosMostrados.values.reduce((a, b) => a < b ? a : b):1)*1.2;
-    intervalo=(_datosMostrados.values.map((x) => x.abs()).reduce((a, b) => a > b ? a : b))*(0.60);
+    //intervalo=(_datosMostrados.values.map((x) => x.abs()).reduce((a, b) => a > b ? a : b))*(0.60);
+    if (_datosMostrados.values.isEmpty) {
+      intervalo = 1.0; // Valor por defecto cuando no hay datos
+    } else {
+      intervalo = _datosMostrados.values.map((x) => x.abs()).reduce((a, b) => a > b ? a : b)*(0.60);
+    }  
   
   }
 
@@ -124,7 +129,8 @@ class _DataState extends State<Data> {
                     Row(
                       children: [
                         Text(
-                          '\$ -${valor.saldoneto.toString()}',
+                          valor.saldoneto == null || valor.saldoneto!.isEmpty ? '\$0.00' : '\$${valor.saldoneto}',
+                          //'\$ -${valor.saldoneto.toString()}',
                           style: TextStyle(
                             color: Colors.redAccent,
                             fontSize: 17,
@@ -157,6 +163,7 @@ class _DataState extends State<Data> {
                     if (snapshot.hasError) {
                       return Center(child: Text('Error: ${snapshot.error}'));
                     }
+                    print(snapshot.data);
                     if (!snapshot.hasData || snapshot.data!.isEmpty) {
                       return Center(child: Text('No hay datos disponibles.'));
                     }
